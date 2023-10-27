@@ -14,39 +14,54 @@ export class FarmerGameObject implements GameObject {
     }
 
     public tick(matrix: Matrix): boolean {
+        const currentFarmland = this._farmer.currentFarmland;
 
         switch (this._farmer.task) {
             case FarmerTask.NONE:
-                this.findNextTask(this.findRelevantFields(matrix));
+                const task = this.findNextTask(this.findRelevantFields(matrix));
+                if (task === FarmerTask.NONE) return false;
                 return this.tick(matrix);
             case FarmerTask.HARVESTING:
-                const currentFarmland = this._farmer.currentFarmland;
-                if (currentFarmland === undefined) throw new Error();
-                if (currentFarmland.state !== FarmlandState.HARVESTING) {
-                    currentFarmland.state = FarmlandState.HARVESTING;
-                }
-                currentFarmland.progress++;
+                this.executeTask(currentFarmland);
+                return true;
+            case FarmerTask.SEEDING:
+                this.executeTask(currentFarmland);
+                return true;
+
+            case FarmerTask.REPAIRING:
+                this._farmer.task = FarmerTask.NONE;
+                return this.tick(matrix);
         }
 
         return false;
     }
 
+    private executeTask(farmLand?: Farmland): void {
+        if (farmLand === undefined) throw new Error();
+        farmLand.progress++; // todo multiply farmer efficiency
+        if (farmLand.progress >= farmLand.crop.requiredHarvestTicks) {
+            farmLand.nextState();
+            this._farmer.task = FarmerTask.NONE;
+        }
+    }
 
-    private findNextTask(farmlands: Farmland[]) {
+
+    private findNextTask(farmlands: Farmland[]): FarmerTask {
         for (let farmland of farmlands) {
             if (farmland.state === FarmlandState.HARVESTING) {
                 this._farmer.task = FarmerTask.HARVESTING;
                 this._farmer.currentFarmland = farmland;
-                return;
+                return FarmerTask.HARVESTING;
             }
         }
         for (let farmland of farmlands) {
             if (farmland.state == FarmlandState.EMPTY) {
                 this._farmer.task = FarmerTask.SEEDING;
                 this._farmer.currentFarmland = farmland;
-                return;
+                return FarmerTask.SEEDING;
             }
         }
+        return FarmerTask.NONE;
     }
 
     private findRelevantFields(matrix: Matrix): Farmland[] {

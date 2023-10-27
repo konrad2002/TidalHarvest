@@ -13,7 +13,28 @@ export class Farmland extends Field {
     public constructor(x: number, y: number) {
         super(FieldType.FARMLAND, x, y);
         this._crop = new Crop("cactus", 1,
-            10, 10);
+            10, 50, 10);
+    }
+
+
+    public nextState(): FarmlandState {
+        const nextState = this.findNextState();
+        this.progress = 0;
+        this._state = nextState;
+        return nextState;
+    }
+
+    private findNextState(): FarmlandState {
+        switch (this.state) {
+            case FarmlandState.EMPTY:
+                return FarmlandState.SEEDING;
+            case FarmlandState.SEEDING:
+                return FarmlandState.GROWING;
+            case FarmlandState.GROWING:
+                return FarmlandState.HARVESTING;
+            case FarmlandState.HARVESTING:
+                return FarmlandState.EMPTY;
+        }
     }
 
     get state(): FarmlandState {

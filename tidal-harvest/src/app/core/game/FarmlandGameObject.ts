@@ -17,6 +17,9 @@ export class FarmlandGameObject implements GameObject {
             case FarmlandState.GROWING:
                 console.log("grow " + this._farmland.x + " " + this._farmland.y);
                 this._farmland.progress++;
+                if(this._farmland.progress >= this._farmland.crop.requiredGrowthTicks){
+                    this._farmland.nextState();
+                }
                 return true;
         }
 
