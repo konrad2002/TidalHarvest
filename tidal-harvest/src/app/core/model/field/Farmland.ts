@@ -69,5 +69,4 @@ export class Farmland extends Field {
         this._crop = value;
     }
 
-
 }

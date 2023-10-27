@@ -28,6 +28,7 @@ export class FarmerGameObject implements GameObject {
                 this.executeTask(currentFarmland);
                 return true;
             case FarmerTask.SEEDING:
+                currentFarmland?.nextState();
                 this.executeTask(currentFarmland);
                 return true;
 
@@ -44,7 +45,7 @@ export class FarmerGameObject implements GameObject {
         console.log("executing task " + farmLand.state.toString()
             + " at " + farmLand.x + " " + farmLand.y);
         farmLand.progress++; // todo multiply farmer efficiency
-        if (farmLand.progress >= farmLand.crop.requiredHarvestTicks) {
+        if (farmLand.progress >= farmLand.crop.requiredTicks(farmLand.state)) {
             farmLand.nextState();
             this._farmer.task = FarmerTask.NONE;
         }

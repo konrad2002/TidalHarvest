@@ -1,3 +1,6 @@
+import {FarmerTask} from "../FarmerTask";
+import {FarmlandState} from "../FarmlandState";
+
 export class Crop {
 
 
@@ -22,19 +25,17 @@ export class Crop {
         return this._name;
     }
 
-    get growthSpeed(): number {
-        return this._growthSpeed;
-    }
-
-    get requiredPlantTicks(): number {
-        return this._requiredPlantTicks;
-    }
-
-    get requiredGrowthTicks(): number {
-        return this._requiredHarvestTicks;
-    }
-    get requiredHarvestTicks(): number {
-        return this._requiredHarvestTicks;
+    requiredTicks(state: FarmlandState): number {
+        switch (state) {
+            case FarmlandState.EMPTY:
+                return 0;
+            case FarmlandState.SEEDING:
+                return this._requiredPlantTicks;
+            case FarmlandState.GROWING:
+                return this._requiredGrowthTicks;
+            case FarmlandState.HARVESTING:
+                return this._requiredHarvestTicks;
+        }
     }
 
 }
