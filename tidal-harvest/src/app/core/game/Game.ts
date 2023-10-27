@@ -29,10 +29,12 @@ export class Game {
                 throw new Error();
                 break;
         }
+        this._matrix.content[x][y] = field;
+        this._tickMachine.tick.next(this._matrix);
         this._tickMachine.changeField(field);
     }
 
-    public tick(): Observable<Matrix>{
+    public matrix(): Observable<Matrix>{
         return this._tickMachine.tick;
     }
 
