@@ -173,14 +173,14 @@ jobs:
         env:
           cache-name: cache-dist
         with:
-          path: build/
+          path: dist/
           key: ${{ runner.os }}-${{ github.run_id }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: './tidal-harvest/dist/'
+          path: './dist/tidal-harvest/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
