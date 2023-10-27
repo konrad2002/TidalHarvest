@@ -56,6 +56,7 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
+        cache-dependency-path: './tidal-harvest'
     - run: npm link @angular/cli@${{ env.CLI_VERSION }}
     - if: ${{ matrix.Test == 'Lint' }}
       run: npm run test:lint
@@ -78,6 +79,7 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
+        cache-dependency-path: './tidal-harvest'
     - name: Cache build output
       uses: actions/cache@v2
       env:
