@@ -1,20 +1,27 @@
+import {FieldType} from "./FieldType";
+
 export class Field {
 
-  private readonly _x: number;
-  private readonly _y: number;
+    private readonly _fieldType: FieldType;
+    private readonly _x: number;
+    private readonly _y: number;
 
-  constructor(x: number, y: number) {
-    this._x = x;
-    this._y = y;
-  }
+    constructor(fieldType: FieldType, x: number, y: number) {
+        this._fieldType = fieldType;
+        this._x = x;
+        this._y = y;
+    }
 
-  get y(): number {
-    return this._y;
-  }
+    get fieldtype(): FieldType {
+        return this._fieldType;
+    }
 
-  get x(): number {
-    return this._x;
-  }
+    get y(): number {
+        return this._y;
+    }
 
+    get x(): number {
+        return this._x;
+    }
 
 }

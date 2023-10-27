@@ -1,6 +1,7 @@
 import {Crop} from "./crop/Crop";
 import {FarmlandState} from "./FarmlandState";
 import {Field} from "./Field";
+import {FieldType} from "./FieldType";
 
 export class Farmland extends Field {
 
@@ -10,8 +11,9 @@ export class Farmland extends Field {
     private _crop: Crop;
 
     public constructor(x: number, y: number) {
-        super(x, y);
-        this._crop = new Crop("cactus", 1);
+        super(FieldType.FARMLAND, x, y);
+        this._crop = new Crop("cactus", 1,
+            10, 10);
     }
 
     get state(): FarmlandState {

@@ -1,15 +1,19 @@
 import {Field} from "./Field";
 import {Farmland} from "./Farmland";
+import {FarmerTask} from "./FarmerTask";
+import {FieldType} from "./FieldType";
 
-export class Farmer extends Field{
+export class Farmer extends Field {
+
 
     private _currentFarmland?: Farmland = undefined;
     private _storageCapacity: number = 100;
     private _crops: number = 0;
     private _radius: number = 1;
+    private _task: FarmerTask = FarmerTask.NONE;
 
     public constructor(x: number, y: number) {
-        super(x, y);
+        super(FieldType.FARMER, x, y);
     }
 
     get radius(): number {
@@ -27,6 +31,7 @@ export class Farmer extends Field{
     set crops(value: number) {
         this._crops = value;
     }
+
     get storageCapacity(): number {
         return this._storageCapacity;
     }
@@ -36,11 +41,19 @@ export class Farmer extends Field{
     }
 
     get currentFarmland(): Farmland | undefined {
-        if(!this._currentFarmland) return undefined;
+        if (!this._currentFarmland) return undefined;
         return this._currentFarmland;
     }
 
     set currentFarmland(value: Farmland) {
         this._currentFarmland = value;
+    }
+
+    get task(): FarmerTask {
+        return this._task;
+    }
+
+    set task(value: FarmerTask) {
+        this._task = value;
     }
 }

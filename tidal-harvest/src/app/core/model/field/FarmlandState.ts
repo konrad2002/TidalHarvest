@@ -1,6 +1,6 @@
 export enum FarmlandState {
-  EMPTY,
-  SEEDING,
-  GROWING,
-  HARVESTING
+    EMPTY,
+    SEEDING,
+    GROWING,
+    HARVESTING
 }
