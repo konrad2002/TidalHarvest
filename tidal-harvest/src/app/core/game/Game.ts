@@ -4,6 +4,7 @@ import {Field} from "../model/field/Field";
 import {FieldType} from "../model/field/FieldType";
 import {Farmland} from "../model/field/Farmland";
 import {Farmer} from "../model/field/Farmer";
+import {Observable} from "rxjs";
 
 export class Game {
 
@@ -29,6 +30,10 @@ export class Game {
                 break;
         }
         this._tickMachine.changeField(field);
+    }
+
+    public tick(): Observable<Matrix>{
+        return this._tickMachine.tick;
     }
 
 }
