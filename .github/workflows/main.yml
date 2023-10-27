@@ -64,9 +64,6 @@ jobs:
 #      run: npm run test:test
 
   build:
-    defaults:
-      run:
-        working-directory: tidal-harvest
     runs-on: ubuntu-latest
     
     needs: install
@@ -85,15 +82,14 @@ jobs:
       env:
         cache-name: cache-dist
       with:
-        path: dist/
+        path: /tidal-harvest/dist/
         key: ${{ runner.os }}-${{ github.run_id }}
     - run: npm link @angular/cli@${{ env.CLI_VERSION }}
+      working-directory: tidal-harvest
     - run: npm run build:${GITHUB_REF##*/}
+      working-directory: tidal-harvest
 
   publish:
-    defaults:
-      run:
-        working-directory: tidal-harvest
     runs-on: ubuntu-latest
     needs: build
     if: github.event_name != 'pull_request'
@@ -170,14 +166,14 @@ jobs:
         env:
           cache-name: cache-dist
         with:
-          path: dist/
+          path: /tidal-harvest/dist/
           key: ${{ runner.os }}-${{ github.run_id }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: './dist/tidal-harvest/'
+          path: './tidal-harvest/dist/tidal-harvest/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
