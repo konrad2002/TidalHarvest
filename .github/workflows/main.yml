@@ -24,7 +24,7 @@ jobs:
   
     defaults:
       run:
-        working-directory: tidal-harvest
+        working-directory: ./tidal-harvest
     runs-on: ubuntu-latest
     
     steps:
