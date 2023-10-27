@@ -151,9 +151,6 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
 
   pages:
-    defaults:
-      run:
-        working-directory: tidal-harvest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -180,7 +177,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: './tidal-harvest/dist/tidal-harvest/'
+          path: './dist/tidal-harvest/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
