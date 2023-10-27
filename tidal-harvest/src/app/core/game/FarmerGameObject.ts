@@ -18,7 +18,10 @@ export class FarmerGameObject implements GameObject {
 
         switch (this._farmer.task) {
             case FarmerTask.NONE:
+                console.log("finding next task for farmer at " +
+                    this._farmer.x + " " + this._farmer.y)
                 const task = this.findNextTask(this.findRelevantFields(matrix));
+                console.log("new task " + task.toString());
                 if (task === FarmerTask.NONE) return false;
                 return this.tick(matrix);
             case FarmerTask.HARVESTING:
@@ -38,6 +41,8 @@ export class FarmerGameObject implements GameObject {
 
     private executeTask(farmLand?: Farmland): void {
         if (farmLand === undefined) throw new Error();
+        console.log("executing task " + farmLand.state.toString()
+            + " at " + farmLand.x + " " + farmLand.y);
         farmLand.progress++; // todo multiply farmer efficiency
         if (farmLand.progress >= farmLand.crop.requiredHarvestTicks) {
             farmLand.nextState();

@@ -12,7 +12,6 @@ export class FarmlandGameObject implements GameObject {
     }
 
     tick(matrix: Matrix): boolean {
-        console.log(this._farmland.state)
         switch (this._farmland.state) {
             case FarmlandState.GROWING:
                 console.log("grow " + this._farmland.x + " " + this._farmland.y);
