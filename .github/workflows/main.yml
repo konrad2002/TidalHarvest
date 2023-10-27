@@ -69,7 +69,7 @@ jobs:
         working-directory: tidal-harvest
     runs-on: ubuntu-latest
     
-    needs: test
+    needs: install
     if: github.event_name != 'pull_request'
     
     steps:
