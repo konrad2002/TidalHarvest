@@ -82,7 +82,7 @@ jobs:
       env:
         cache-name: cache-dist
       with:
-        path: /tidal-harvest/dist/
+        path: /dist/
         key: ${{ runner.os }}-${{ github.run_id }}
     - run: npm link @angular/cli@${{ env.CLI_VERSION }}
       working-directory: tidal-harvest
