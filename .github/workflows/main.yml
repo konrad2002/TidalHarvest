@@ -37,31 +37,31 @@ jobs:
         cache-dependency-path: './tidal-harvest'
     - run: npm install
 
-  test:
-    defaults:
-      run:
-        working-directory: tidal-harvest
-    runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        Test: []
-    
-    needs: install
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Test (${{ matrix.Test }})
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-        cache-dependency-path: './tidal-harvest'
-    - run: npm link @angular/cli@${{ env.CLI_VERSION }}
-    - if: ${{ matrix.Test == 'Lint' }}
-      run: npm run test:lint
-    - if: ${{ matrix.Test == 'Test' }}
-      run: npm run test:test
+#  test:
+#    defaults:
+#      run:
+#        working-directory: tidal-harvest
+#    runs-on: ubuntu-latest
+#
+#    strategy:
+#      matrix:
+#        Test: [Test,Lint]
+#
+#    needs: install
+#
+#    steps:
+#    - uses: actions/checkout@v3
+#    - name: Test (${{ matrix.Test }})
+#      uses: actions/setup-node@v3
+#      with:
+#        node-version: ${{ env.NODE_VERSION }}
+#        cache: 'npm'
+#        cache-dependency-path: './tidal-harvest'
+#    - run: npm link @angular/cli@${{ env.CLI_VERSION }}
+#    - if: ${{ matrix.Test == 'Lint' }}
+#      run: npm run test:lint
+#    - if: ${{ matrix.Test == 'Test' }}
+#      run: npm run test:test
 
   build:
     defaults:
