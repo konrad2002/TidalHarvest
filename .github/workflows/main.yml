@@ -78,11 +78,11 @@ jobs:
         cache: 'npm'
         cache-dependency-path: './tidal-harvest'
     - name: Cache build output
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         cache-name: cache-dist
       with:
-        path: /dist/
+        path: ./tidal-harvest/dist/
         key: ${{ runner.os }}-${{ github.run_id }}
     - run: npm link @angular/cli@${{ env.CLI_VERSION }}
       working-directory: tidal-harvest
@@ -162,18 +162,18 @@ jobs:
 
 
       - name: Use cached build output
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-dist
         with:
-          path: /tidal-harvest/dist/
+          path: ./tidal-harvest/dist/
           key: ${{ runner.os }}-${{ github.run_id }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: './dist/tidal-harvest/'
+          path: './tidal-harvest/dist/tidal-harvest/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
