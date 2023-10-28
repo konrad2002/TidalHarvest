@@ -1,3 +1,4 @@
+<th-field-popup *ngIf="showPopup" [field]="field" (close)="showPopup = false"></th-field-popup>
 <div class="tile-container {{isClickable() ? 'tile-clickable' : '' }}" (click)="onTileClick()">
     <ng-template thGridTile></ng-template>
 </div>

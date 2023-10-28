@@ -59,7 +59,7 @@ export class TickMachine {
                 (<WaterChannel>field).updatePowered(this._matrix);
                 (<WaterChannel>field).waterNeighbourFields(this._matrix);
                 break;
-            case FieldType.WATER:
+            case FieldType.WATER_SOURCE:
                 break;
         }
     }

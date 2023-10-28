@@ -2,8 +2,10 @@ import {Field} from "../Field";
 import {FieldType} from "../FieldType";
 import {Matrix} from "../../Matrix";
 import {Farmland} from "../farm/Farmland";
+import {WaterEmitter} from "./WaterEmitter";
+import {WaterSource} from "./WaterSource";
 
-export class WaterChannel extends Field {
+export class WaterChannel extends Field implements WaterEmitter {
 
     private _powered: boolean = false;
     private readonly _range = 1;
@@ -33,20 +35,22 @@ export class WaterChannel extends Field {
     }
 
     private calcIsPowered(matrix: Matrix): boolean {
-        if (this.isWaterSource(matrix, this.x - 1, this.y)) return true;
-        if (this.isWaterSource(matrix, this.x + 1, this.y)) return true;
-        if (this.isWaterSource(matrix, this.x, this.y - 1)) return true;
-        if (this.isWaterSource(matrix, this.x, this.y + 1)) return true;
+        if (this.isWaterEmitter(matrix, this.x - 1, this.y)) return true;
+        if (this.isWaterEmitter(matrix, this.x + 1, this.y)) return true;
+        if (this.isWaterEmitter(matrix, this.x, this.y - 1)) return true;
+        if (this.isWaterEmitter(matrix, this.x, this.y + 1)) return true;
         return false;
     }
 
-    private isWaterSource(matrix: Matrix, x: number, y: number): boolean {
+    private isWaterEmitter(matrix: Matrix, x: number, y: number): boolean {
         console.log("checking if " + x + " " + y + " is water powered")
-        if (y < 0) return true // hacky
         if (x >= 0 && x < matrix.x && y >= 0 && y < matrix.y) {
             const field = matrix.content[x][y];
             if (field instanceof WaterChannel) {
                 if (field.powered) return true;
+            }
+            if (field instanceof WaterSource) {
+                return true;
             }
         }
         return false;
@@ -65,9 +69,9 @@ export class WaterChannel extends Field {
                         farmLand.watered = true;
                         console.log("yes")
                     }
-                    if(field?.fieldType === FieldType.WATER_CHANNEL){
+                    if (field?.fieldType === FieldType.WATER_CHANNEL) {
                         const waterChannel = field as WaterChannel;
-                        if(!waterChannel.powered){
+                        if (!waterChannel.powered) {
                             waterChannel.updatePowered(matrix);
                             waterChannel.waterNeighbourFields(matrix);
                         }
@@ -76,5 +80,9 @@ export class WaterChannel extends Field {
             }
     }
 
+    public getRemainingStrength(distance: number): number {
+        return Math.floor(10 / ((distance + 1) ^ 3));
+
+    }
 
 }

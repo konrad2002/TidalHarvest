@@ -9,9 +9,9 @@ import {GridModule} from "./grid/grid.module";
   declarations: [
     UiComponent
   ],
-  exports: [
-    UiComponent
-  ],
+    exports: [
+        UiComponent,
+    ],
     imports: [
         CommonModule,
         GridModule

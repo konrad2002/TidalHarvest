@@ -14,7 +14,12 @@ export class FarmerGameObject implements GameObject {
     }
 
     public tick(matrix: Matrix, tick: number): boolean {
-        if (this._invalidated) return false;
+        if (this._invalidated || this._farmer.blocked) return false;
+
+        if (this._farmer.crops >= this._farmer.storageCapacity) {
+            this._farmer.blocked = true;
+            return false;
+        }
 
         const currentFarmland = this._farmer.currentFarmland;
 
@@ -83,13 +88,14 @@ export class FarmerGameObject implements GameObject {
     private executeTask(farmLand?: Farmland): void {
         if (farmLand === undefined) throw new Error();
         // console.log("executing task " + farmLand.state.toString() + " at " + farmLand.x + " " + farmLand.y);
+        if (!farmLand.crop) farmLand.crop = this._farmer.crop;
         if (farmLand.progress >= farmLand.crop.requiredTicks(farmLand.state)) {
             // console.log("switching " + farmLand.x + " " + farmLand.y + "to next state");
             farmLand.nextState();
             this.inactivateFarmer();
             return;
         }
-        farmLand.progress++; // todo multiply farmer efficiency
+        farmLand.progress += 1; // todo multiply farmer efficiency
 
     }
 

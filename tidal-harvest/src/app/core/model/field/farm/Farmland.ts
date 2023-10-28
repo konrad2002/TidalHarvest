@@ -1,7 +1,7 @@
-import {Crop} from "./Crop";
 import {FarmlandState} from "./FarmlandState";
 import {Field} from "../Field";
 import {FieldType} from "../FieldType";
+import {Crop} from "./crop/Crop";
 
 export class Farmland extends Field {
 
@@ -10,19 +10,21 @@ export class Farmland extends Field {
     private _fertility: number = 1;
     private _humidity: number = 1;
     private _watered: boolean = false;
-    private _crop: Crop;
+    private _waterInflow: number = 0;
+    private _waterDrought: number = Math.random() * 0.1;
+    private _crop?: Crop = undefined;
 
     public constructor(x: number, y: number) {
         super(FieldType.FARMLAND, x, y);
-        this._crop = new Crop("cactus", 1,
-            18, 47, 11);
     }
 
-    public calcProgress(): number{
-        const requiredTicks = this.crop.requiredTicks(this.state);
-        if(requiredTicks == 0) return 0;
+    public calcProgress(): number {
+        const requiredTicks = this._crop?.requiredTicks(this.state);
+        if (!requiredTicks) return 0;
+        if (requiredTicks == 0) return 0;
         return Math.floor(100 * this._progress / requiredTicks);
     }
+
 
     public getFlooredHumidity(): number {
         return Math.floor(this.humidity * 100)
@@ -45,6 +47,16 @@ export class Farmland extends Field {
                 return FarmlandState.HARVESTING;
             case FarmlandState.HARVESTING:
                 return FarmlandState.EMPTY;
+        }
+    }
+
+    public applyWaterRules(): void {
+        if (!this.watered) {
+            this.humidity = Math.max(0, this.humidity
+                - this._waterDrought + this.waterInflow);
+        }
+        if (this.watered) {
+            this.humidity = Math.min(3, this.humidity + 0.05);
         }
     }
 
@@ -72,14 +84,6 @@ export class Farmland extends Field {
         this._fertility = value;
     }
 
-    get crop(): Crop {
-        return this._crop;
-    }
-
-    set crop(value: Crop) {
-        this._crop = value;
-    }
-
     get humidity(): number {
         return this._humidity;
     }
@@ -95,5 +99,22 @@ export class Farmland extends Field {
     set watered(value: boolean) {
         this._watered = value;
     }
+
+    get waterInflow(): number {
+        return this._waterInflow;
+    }
+
+    set waterInflow(value: number) {
+        this._waterInflow = value;
+    }
+
+    get crop(): Crop | undefined {
+        return this._crop;
+    }
+
+    set crop(value: Crop) {
+        this._crop = value;
+    }
+
 
 }
