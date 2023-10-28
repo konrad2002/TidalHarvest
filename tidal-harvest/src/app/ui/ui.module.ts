@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiComponent } from './ui.component';
 import {GridModule} from "./grid/grid.module";
+import {SharedModule} from "./shared/shared.module";
 
 
 
@@ -14,7 +15,8 @@ import {GridModule} from "./grid/grid.module";
     ],
     imports: [
         CommonModule,
-        GridModule
+        GridModule,
+        SharedModule
     ]
 })
 export class UiModule { }

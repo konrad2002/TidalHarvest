@@ -6,6 +6,7 @@ import {CoreModule} from "../core/core.module";
 import { FarmerPopupComponent } from './popup/field-popup/farmer-popup/farmer-popup.component';
 import { RockPopupComponent } from './popup/field-popup/rock-popup/rock-popup.component';
 import { WaterChannelPopupComponent } from './popup/field-popup/water-channel-popup/water-channel-popup.component';
+import { ButtonComponent } from './button/button.component';
 
 
 
@@ -15,11 +16,13 @@ import { WaterChannelPopupComponent } from './popup/field-popup/water-channel-po
         FarmlandPopupComponent,
         FarmerPopupComponent,
         RockPopupComponent,
-        WaterChannelPopupComponent
+        WaterChannelPopupComponent,
+        ButtonComponent
 
     ],
     exports: [
-        FieldPopupComponent
+        FieldPopupComponent,
+        ButtonComponent
     ],
     imports: [
         CommonModule,

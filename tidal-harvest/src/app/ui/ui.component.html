@@ -1,7 +1,7 @@
-<button class="{{placing === FieldType.FARMER ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.FARMER)">PLACE FARMER</button>
-<button class="{{placing === FieldType.FARMLAND ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.FARMLAND)">PLACE FARMLAND</button>
-<button class="{{placing === FieldType.ROCK ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.ROCK)">PLACE ROCK</button>
-<button class="{{placing === FieldType.WATER_CHANNEL ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.WATER_CHANNEL)">PLACE WATER_CHANNEL</button>
+<th-button [buttonType]="placing === FieldType.FARMER ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMER)">{{placing === FieldType.FARMER ? 'abbrechen' : 'Farmer setzen'}}</th-button>
+<th-button [buttonType]="placing === FieldType.FARMLAND ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMLAND)">{{placing === FieldType.FARMLAND ? 'abbrechen' : 'Acker setzen'}}</th-button>
+<th-button [buttonType]="placing === FieldType.ROCK ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.ROCK)">{{placing === FieldType.ROCK ? 'abbrechen' : 'Stein setzen'}}</th-button>
+<th-button [buttonType]="placing === FieldType.WATER_CHANNEL ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.WATER_CHANNEL)">{{placing === FieldType.WATER_CHANNEL ? 'abbrechen' : 'Graben setzen'}}</th-button>
 
 <th-grid
     *ngIf="matrix"
