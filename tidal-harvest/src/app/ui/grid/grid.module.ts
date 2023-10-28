@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { GridComponent } from './grid.component';
 import { FarmlandComponent } from './tile/farmland/farmland.component';
 import { TileComponent } from './tile/tile.component';
 import {CoreModule} from "../core/core.module";
 import { FarmerComponent } from './tile/farmer/farmer.component';
 import { RockComponent } from './tile/rock/rock.component';
+import { TileBackgroundImgComponent } from './tile/tile-background-img/tile-background-img.component';
 
 
 @NgModule({
@@ -14,14 +15,16 @@ import { RockComponent } from './tile/rock/rock.component';
         FarmlandComponent,
         TileComponent,
         FarmerComponent,
-        RockComponent
+        RockComponent,
+        TileBackgroundImgComponent
     ],
     exports: [
         GridComponent
     ],
     imports: [
         CommonModule,
-        CoreModule
+        CoreModule,
+        NgOptimizedImage
     ]
 })
 export class GridModule { }
