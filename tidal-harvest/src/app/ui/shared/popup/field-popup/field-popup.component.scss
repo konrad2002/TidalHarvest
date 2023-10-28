@@ -1,0 +1,49 @@
+
+.popup {
+    position: absolute;
+    z-index: 10;
+    background-color: transparent;
+    color: black;
+    padding: 5px;
+
+    &.popup-small {
+        background-image: url("/assets/ui/popup_small.png");
+        background-size: 100%;
+        width: 100px;
+        height: 44px;
+    }
+
+    h1 {
+        font-size: 12px;
+        margin: 0;
+        b {
+            text-decoration: underline;
+        }
+    }
+    .coords {
+        font-size: 8px;
+        display: inline-block;
+        color: gray;
+        font-weight: normal;
+        margin-left: 4px;
+    }
+
+    .close-btn {
+        background-image: url("/assets/ui/close_btn.png");
+        background-size: 100%;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        margin: 0;
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        top: -6px;
+        left: 93px;
+        cursor: pointer;
+
+        &:hover {
+            filter: brightness(1.3);
+        }
+    }
+}

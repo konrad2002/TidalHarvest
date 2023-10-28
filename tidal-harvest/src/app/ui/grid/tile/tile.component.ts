@@ -22,6 +22,8 @@ export class TileComponent implements OnInit, OnChanges {
     constructor() {
     }
 
+    showPopup: boolean = false;
+
     ngOnInit() {
         this.updateView();
     }
@@ -40,13 +42,26 @@ export class TileComponent implements OnInit, OnChanges {
         }
     }
 
-    isClickable(): boolean {
-        if (this.placing === undefined) return false;
+    isPlaceableOn(): boolean {
         return this.field.fieldType != this.placing;
     }
 
+    isClickable(): boolean {
+        if (this.placing === undefined) return true;
+        return this.isPlaceableOn();
+
+    }
+
     onTileClick() {
-        if (!this.isClickable()) return;
-        this.tileClick.emit(new Coordinates(this.field.x, this.field.y));
+        console.log("tile clicked: (" + this.field.x + ";" + this.field.y + ")")
+        if (this.placing !== undefined) {
+            if (this.isPlaceableOn()) {
+                this.tileClick.emit(new Coordinates(this.field.x, this.field.y));
+            } else {
+                return;
+            }
+        } else {
+            this.showPopup = true;
+        }
     }
 }

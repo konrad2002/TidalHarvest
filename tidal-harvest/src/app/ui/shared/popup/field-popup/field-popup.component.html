@@ -1,0 +1,8 @@
+<div class="popup field-popup {{field.fieldType == FieldType.FARMLAND ? 'popup-small' : 'popup-big'}}">
+    <button class="close-btn" (click)="onClose()"></button>
+    <h1>
+        <b>{{getFieldName()}}</b>
+        <span class="coords">x: {{field.x}}, y: {{field.y}}</span>
+    </h1>
+    <ng-template thFieldPopup></ng-template>
+</div>
