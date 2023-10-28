@@ -8,4 +8,4 @@ export const TileTypes = new Map<FieldType, any>();
 TileTypes.set(FieldType.FARMLAND, FarmlandComponent)
 TileTypes.set(FieldType.FARMER, FarmerComponent)
 TileTypes.set(FieldType.ROCK, RockComponent)
-TileTypes.set(FieldType.WATER, WaterChannelComponent)
+TileTypes.set(FieldType.WATER_CHANNEL, WaterChannelComponent)

@@ -7,6 +7,7 @@ import {Farmer} from "../model/field/farm/Farmer";
 import {Observable} from "rxjs";
 import {WaterChannel} from "../model/field/water/WaterChannel";
 import {Rock} from "../model/field/rock/Rock";
+import {Water} from "../model/field/water/Water";
 
 export class Game {
 
@@ -30,8 +31,12 @@ export class Game {
             case FieldType.ROCK:
                 field = new Rock(x, y);
                 break;
-            case FieldType.WATER:
+            case FieldType.WATER_CHANNEL:
                 field = new WaterChannel(x, y);
+                break;
+            case FieldType.WATER:
+                field = new Water(x, y);
+                break;
         }
         this._matrix.content[x][y] = field;
         this._tickMachine.tick.next(this._matrix);

@@ -9,7 +9,7 @@ export class WaterChannel extends Field {
     private readonly _range = 1;
 
     public constructor(x: number, y: number) {
-        super(FieldType.WATER, x, y);
+        super(FieldType.WATER_CHANNEL, x, y);
     }
 
     get powered(): boolean {
@@ -64,6 +64,13 @@ export class WaterChannel extends Field {
                         const farmLand = field as Farmland;
                         farmLand.watered = true;
                         console.log("yes")
+                    }
+                    if(field?.fieldType === FieldType.WATER_CHANNEL){
+                        const waterChannel = field as WaterChannel;
+                        if(!waterChannel.powered){
+                            waterChannel.updatePowered(matrix);
+                            waterChannel.waterNeighbourFields(matrix);
+                        }
                     }
                 }
             }

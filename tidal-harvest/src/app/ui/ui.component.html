@@ -1,7 +1,7 @@
 <button class="{{placing === FieldType.FARMER ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.FARMER)">PLACE FARMER</button>
 <button class="{{placing === FieldType.FARMLAND ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.FARMLAND)">PLACE FARMLAND</button>
 <button class="{{placing === FieldType.ROCK ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.ROCK)">PLACE ROCK</button>
-<button class="{{placing === FieldType.WATER ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.WATER)">PLACE WATER</button>
+<button class="{{placing === FieldType.WATER_CHANNEL ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.WATER_CHANNEL)">PLACE WATER_CHANNEL</button>
 
 <th-grid
     *ngIf="matrix"
