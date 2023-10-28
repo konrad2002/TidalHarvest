@@ -1,2 +1,11 @@
-<span>FARMLAND</span>
-{{field.state}} ({{field.progress}})
+<div class="farmland {{'farmland-' + field.state}}">
+    <ng-container *ngIf="field">
+        <span class="coords">({{field.x + ";" + field.y}})</span>
+    </ng-container>
+    {{field.progress}}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
