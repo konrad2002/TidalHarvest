@@ -31,7 +31,7 @@ export class FarmlandComponent implements GridTile{
                 break;
         }
 
-        if (this.field.humidity > 0.5) {
+        if (this.field.humidity > 1) {
             str += "wet";
         } else {
             str += "dry";
