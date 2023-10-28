@@ -1,9 +1,11 @@
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+.row {
+    padding: 0;
+    margin: 0;
+    display: block;
+    height: 22px;
 }
 
-td {
+.field {
     height: 22px;
     width: 22px;
     overflow: hidden;
@@ -12,4 +14,5 @@ td {
     font-weight: bold;
     padding: 0;
     color: #e3e3e3;
+    background-color: #eac168;
 }

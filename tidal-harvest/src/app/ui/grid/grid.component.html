@@ -1,9 +1,7 @@
-<table>
-    <tr *ngFor="let item of [].constructor(matrix.x); let i = index">
-        <td *ngFor="let item of [].constructor(matrix.y); let j = index">
-            <th-grid-tile
-                [field]="matrix.content[i][j]"
-            ></th-grid-tile>
-        </td>
-    </tr>
-</table>
+<div class="row" *ngFor="let item of [].constructor(matrix.x); let i = index">
+    <div class="field" *ngFor="let item of [].constructor(matrix.y); let j = index">
+        <th-grid-tile
+            [field]="matrix.content[i][j]"
+        ></th-grid-tile>
+    </div>
+</div>
