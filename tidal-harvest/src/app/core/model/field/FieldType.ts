@@ -2,5 +2,6 @@ export enum FieldType {
     FARMLAND,
     FARMER,
     ROCK,
-    WATER
+    WATER,
+    WATER_CHANNEL
 }

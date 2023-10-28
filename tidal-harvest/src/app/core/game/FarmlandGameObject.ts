@@ -15,8 +15,10 @@ export class FarmlandGameObject implements GameObject {
 
     tick(matrix: Matrix, tick: number): boolean {
         if (this._invalidated) return false;
-        if (tick % 10 === 0) {
-            this._farmland.humidity *= 0.95;
+        if (tick % (Math.floor(Math.random() * 10) + 5) === 0) {
+            if (!this._farmland.watered) {
+                this._farmland.humidity = Math.max(0, this._farmland.humidity - Math.random() * 0.1);
+            }
             if (this._farmland.watered) {
                 this._farmland.humidity = Math.min(3, this._farmland.humidity + 0.05);
             }

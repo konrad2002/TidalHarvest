@@ -39,7 +39,7 @@ export class TickMachine {
                 });
             });
             this._tick.next(this._matrix);
-        }, 1000);
+        }, 500);
     }
 
     public changeField(field: Field) {
@@ -55,10 +55,12 @@ export class TickMachine {
                 break;
             case FieldType.ROCK:
                 break;
-            case FieldType.WATER:
+            case FieldType.WATER_CHANNEL:
                 (<WaterChannel>field).updatePowered(this._matrix);
                 (<WaterChannel>field).waterNeighbourFields(this._matrix);
-
+                break;
+            case FieldType.WATER:
+                break;
         }
     }
 

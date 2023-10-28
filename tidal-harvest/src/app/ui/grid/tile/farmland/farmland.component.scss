@@ -2,15 +2,9 @@
     text-align: center;
     padding: 4px;
     font-size: 4px;
-
-    &:hover .coords {
-        opacity: 1;
-    }
-}
-.coords {
+    position: absolute;
+    z-index: 1;
     color: #aaa;
-    font-size: 4px;
     display: block;
     font-weight: normal;
-    opacity: 0;
 }

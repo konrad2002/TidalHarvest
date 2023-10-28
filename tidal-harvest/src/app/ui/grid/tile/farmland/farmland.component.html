@@ -1,11 +1,8 @@
 <th-tile-background-img
     [image]="getBackgroundImage()"
 ></th-tile-background-img>
-<div class="farmland">
-    <ng-container *ngIf="field">
-        <span class="coords">
-            ({{field.x + ";" + field.y}})
-            {{field.calcProgress()}}%
-        </span>
-    </ng-container>
+<div class="farmland" *ngIf="field">
+    ({{field.x + ";" + field.y}})<br>
+    {{field.calcProgress()}}%<br>
+    {{field.getFlooredHumidity()}}
 </div>
