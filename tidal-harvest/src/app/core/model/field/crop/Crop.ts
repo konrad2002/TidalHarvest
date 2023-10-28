@@ -29,7 +29,7 @@ export class Crop {
         switch (state) {
             case FarmlandState.EMPTY:
                 return 0;
-            case FarmlandState.SEEDING:
+            case FarmlandState.PLANTING:
                 return this._requiredPlantTicks;
             case FarmlandState.GROWING:
                 return this._requiredGrowthTicks;

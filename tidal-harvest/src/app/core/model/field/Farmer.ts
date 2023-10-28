@@ -49,6 +49,10 @@ export class Farmer extends Field {
         this._currentFarmland = value;
     }
 
+    public clearCurrentFarmland(){
+        this._currentFarmland = undefined;
+    }
+
     get task(): FarmerTask {
         return this._task;
     }

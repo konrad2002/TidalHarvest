@@ -27,7 +27,6 @@ export class Game {
                 break;
             case FieldType.ROCK:
                 throw new Error();
-                break;
         }
         this._matrix.content[x][y] = field;
         this._tickMachine.tick.next(this._matrix);

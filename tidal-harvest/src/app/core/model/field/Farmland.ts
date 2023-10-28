@@ -8,14 +8,22 @@ export class Farmland extends Field {
     private _state: FarmlandState = FarmlandState.EMPTY;
     private _progress: number = 0;
     private _fertility: number = 1;
+    private _humidity: number = 1;
     private _crop: Crop;
 
     public constructor(x: number, y: number) {
         super(FieldType.FARMLAND, x, y);
         this._crop = new Crop("cactus", 1,
-            10, 50, 10);
+            18, 47, 11);
     }
 
+    public calcProgress(): number{
+        return Math.floor(100 * this._progress / this.crop.requiredTicks(this.state));
+    }
+
+    public getFlooredHumidity(): number {
+        return Math.floor(this.humidity * 100)
+    }
 
     public nextState(): FarmlandState {
         const nextState = this.findNextState();
@@ -27,8 +35,8 @@ export class Farmland extends Field {
     private findNextState(): FarmlandState {
         switch (this.state) {
             case FarmlandState.EMPTY:
-                return FarmlandState.SEEDING;
-            case FarmlandState.SEEDING:
+                return FarmlandState.PLANTING;
+            case FarmlandState.PLANTING:
                 return FarmlandState.GROWING;
             case FarmlandState.GROWING:
                 return FarmlandState.HARVESTING;
@@ -67,6 +75,14 @@ export class Farmland extends Field {
 
     set crop(value: Crop) {
         this._crop = value;
+    }
+
+    get humidity(): number {
+        return this._humidity;
+    }
+
+    set humidity(value: number) {
+        this._humidity = value;
     }
 
 }

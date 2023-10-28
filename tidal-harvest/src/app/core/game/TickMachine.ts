@@ -29,15 +29,16 @@ export class TickMachine {
             });
         });
 
-
+        let counter = 0;
         setInterval(() => {
+            counter++;
             this._gameObjects.forEach(outer => {
                 outer.forEach(inner => {
-                    inner.tick(this._matrix);
+                    inner.tick(this._matrix, counter);
                 });
             });
             this._tick.next(this._matrix);
-        }, 500);
+        }, 100);
     }
 
     public changeField(field: Field) {

@@ -9,4 +9,5 @@ import {Farmland} from "../../../../core/model/field/Farmland";
 })
 export class FarmlandComponent implements GridTile{
     @Input() field!: Farmland;
+    protected readonly Math = Math;
 }
