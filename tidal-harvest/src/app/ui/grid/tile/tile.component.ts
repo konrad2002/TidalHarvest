@@ -41,7 +41,7 @@ export class TileComponent implements OnInit, OnChanges {
     }
 
     isClickable(): boolean {
-        if (!this.placing) return false;
+        if (this.placing === undefined) return false;
         return this.field.fieldType != this.placing;
     }
 

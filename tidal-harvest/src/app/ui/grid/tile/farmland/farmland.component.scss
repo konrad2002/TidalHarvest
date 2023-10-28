@@ -3,6 +3,10 @@
     background-size: 100%;
     text-align: center;
     padding: 4px;
+
+    &:hover .coords {
+        opacity: 1;
+    }
 }
 
 .farmland-0 {
@@ -24,7 +28,8 @@
 }
 .coords {
     color: #aaa;
-    font-size: 6px;
+    font-size: 4px;
     display: block;
     font-weight: normal;
+    opacity: 0;
 }
