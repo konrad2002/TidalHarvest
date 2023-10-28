@@ -12,7 +12,7 @@ export class Field {
         this._y = y;
     }
 
-    get fieldtype(): FieldType {
+    get fieldType(): FieldType {
         return this._fieldType;
     }
 
