@@ -7,6 +7,7 @@ import {FarmlandGameObject} from "./FarmlandGameObject";
 import {Farmland} from "../model/field/farm/Farmland";
 import {FarmerGameObject} from "./FarmerGameObject";
 import {Farmer} from "../model/field/farm/Farmer";
+import {WaterChannel} from "../model/field/water/WaterChannel";
 
 export class TickMachine {
 
@@ -54,6 +55,10 @@ export class TickMachine {
                 break;
             case FieldType.ROCK:
                 break;
+            case FieldType.WATER:
+                (<WaterChannel>field).updatePowered(this._matrix);
+                (<WaterChannel>field).waterNeighbourFields(this._matrix);
+
         }
     }
 

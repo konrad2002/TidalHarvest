@@ -8,4 +8,8 @@ import {Farmer} from "../../../../core/model/field/farm/Farmer";
 })
 export class FarmerComponent {
     @Input() field!: Farmer;
+
+    getBackgroundImage() {
+        return "farmer";
+    }
 }

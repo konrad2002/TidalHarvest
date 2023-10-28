@@ -135,7 +135,7 @@ export class FarmerGameObject implements GameObject {
                 fields.push(field);
             }
         }
-        console.log("relevant neighbouring fields found: " + fields.length);
+        // console.log("relevant neighbouring fields found: " + fields.length);
         return fields;
     }
 

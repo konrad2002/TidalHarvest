@@ -1,11 +1,11 @@
-<div class="farmland {{'farmland-' + field.state}}">
+<th-tile-background-img
+    [image]="getBackgroundImage()"
+></th-tile-background-img>
+<div class="farmland">
     <ng-container *ngIf="field">
-        <span class="coords">({{field.x + ";" + field.y}})</span>
+        <span class="coords">
+            ({{field.x + ";" + field.y}})
+            {{field.calcProgress()}}%
+        </span>
     </ng-container>
-    {{field.calcProgress()}}%
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 </div>
