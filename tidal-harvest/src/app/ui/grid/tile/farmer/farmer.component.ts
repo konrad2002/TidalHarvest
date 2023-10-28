@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Farmer} from "../../../../core/model/field/Farmer";
 
 @Component({
   selector: 'th-farmer',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./farmer.component.scss']
 })
 export class FarmerComponent {
-
+    @Input() field!: Farmer;
 }
