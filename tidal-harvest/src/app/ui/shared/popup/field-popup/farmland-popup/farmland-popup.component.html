@@ -1,4 +1,6 @@
 <ng-container *ngIf="field">
     <span>Bewässert: {{field.humidity > 1 ? 'ja' : 'nein'}}</span>
     <span *ngIf="field.crop">Pflanze: {{field.crop.cropKey}}</span>
+    <span>Fortschritt: {{field.calcProgress()}}%</span>
+    <span>Feuchtigkeit: {{field.getFlooredHumidity()}}</span>
 </ng-container>

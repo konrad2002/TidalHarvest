@@ -27,7 +27,6 @@ export class UiComponent {
         if (this.placing !== undefined) {
             console.log("placing: " + this.placing + "on: " + $event.x + ";" + $event.y);
             this.service.place(this.placing, $event.x, $event.y);
-            this.placing = undefined;
         }
     }
 

@@ -17,7 +17,7 @@ export class Game {
     private readonly _tickMachine: TickMachine;
 
     constructor() {
-        this._matrix = new Matrix(20, 20);
+        this._matrix = new Matrix(50, 50);
         this._tickMachine = new TickMachine(this._matrix);
     }
 
