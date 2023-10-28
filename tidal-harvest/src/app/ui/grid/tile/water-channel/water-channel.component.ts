@@ -21,7 +21,9 @@ export class WaterChannelComponent implements GridTile {
     }
 
     getBackgroundImage(): string {
-        if (!this.matrix) return "water_channel";
+        if (!this.matrix) return "water/water_channel_empty";
+
+        if (!this.field.powered) return "water/water_channel_empty";
 
         const x = this.field.x;
         const y = this.field.y;
