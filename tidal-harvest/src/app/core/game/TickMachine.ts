@@ -38,7 +38,7 @@ export class TickMachine {
                 });
             });
             this._tick.next(this._matrix);
-        }, 100);
+        }, 1000);
     }
 
     public changeField(field: Field) {
