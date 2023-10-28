@@ -1,7 +1,7 @@
-import {Field} from "./Field";
+import {Field} from "../Field";
 import {Farmland} from "./Farmland";
 import {FarmerTask} from "./FarmerTask";
-import {FieldType} from "./FieldType";
+import {FieldType} from "../FieldType";
 
 export class Farmer extends Field {
 

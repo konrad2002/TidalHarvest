@@ -1,7 +1,7 @@
-import {Crop} from "./crop/Crop";
+import {Crop} from "./Crop";
 import {FarmlandState} from "./FarmlandState";
-import {Field} from "./Field";
-import {FieldType} from "./FieldType";
+import {Field} from "../Field";
+import {FieldType} from "../FieldType";
 
 export class Farmland extends Field {
 

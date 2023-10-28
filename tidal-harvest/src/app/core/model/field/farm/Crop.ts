@@ -1,5 +1,5 @@
-import {FarmerTask} from "../FarmerTask";
-import {FarmlandState} from "../FarmlandState";
+import {FarmerTask} from "./FarmerTask";
+import {FarmlandState} from "./FarmlandState";
 
 export class Crop {
 

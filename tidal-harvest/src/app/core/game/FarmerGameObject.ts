@@ -1,9 +1,9 @@
 import {GameObject} from "./GameObject";
 import {Matrix} from "../model/Matrix";
-import {Farmer} from "../model/field/Farmer";
-import {FarmerTask} from "../model/field/FarmerTask";
-import {Farmland} from "../model/field/Farmland";
-import {FarmlandState} from "../model/field/FarmlandState";
+import {Farmer} from "../model/field/farm/Farmer";
+import {FarmerTask} from "../model/field/farm/FarmerTask";
+import {Farmland} from "../model/field/farm/Farmland";
+import {FarmlandState} from "../model/field/farm/FarmlandState";
 
 export class FarmerGameObject implements GameObject {
     private readonly _farmer: Farmer;

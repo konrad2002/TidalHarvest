@@ -1,5 +1,5 @@
 import {Field} from "./field/Field";
-import {Farmland} from "./field/Farmland";
+import {Farmland} from "./field/farm/Farmland";
 
 export class Matrix {
 

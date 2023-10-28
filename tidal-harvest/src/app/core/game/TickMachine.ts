@@ -4,9 +4,9 @@ import {GameObject} from "./GameObject";
 import {Field} from "../model/field/Field";
 import {FieldType} from "../model/field/FieldType";
 import {FarmlandGameObject} from "./FarmlandGameObject";
-import {Farmland} from "../model/field/Farmland";
+import {Farmland} from "../model/field/farm/Farmland";
 import {FarmerGameObject} from "./FarmerGameObject";
-import {Farmer} from "../model/field/Farmer";
+import {Farmer} from "../model/field/farm/Farmer";
 
 export class TickMachine {
 
