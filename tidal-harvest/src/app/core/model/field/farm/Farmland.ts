@@ -9,6 +9,7 @@ export class Farmland extends Field {
     private _progress: number = 0;
     private _fertility: number = 1;
     private _humidity: number = 1;
+    private _watered: boolean = false;
     private _crop: Crop;
 
     public constructor(x: number, y: number) {
@@ -85,6 +86,14 @@ export class Farmland extends Field {
 
     set humidity(value: number) {
         this._humidity = value;
+    }
+
+    get watered(): boolean {
+        return this._watered;
+    }
+
+    set watered(value: boolean) {
+        this._watered = value;
     }
 
 }

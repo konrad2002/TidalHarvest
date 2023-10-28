@@ -18,7 +18,7 @@ export class Game {
         this._tickMachine = new TickMachine(this._matrix);
     }
 
-    public place(fieldType: FieldType, x: number, y: number){
+    public place(fieldType: FieldType, x: number, y: number) {
         let field: Field
         switch (fieldType) {
             case FieldType.FARMLAND:
@@ -38,7 +38,7 @@ export class Game {
         this._tickMachine.changeField(field);
     }
 
-    public matrix(): Observable<Matrix>{
+    public matrix(): Observable<Matrix> {
         return this._tickMachine.tick;
     }
 
