@@ -11,7 +11,7 @@ export class RockComponent implements GridTile{
     @Input() field!: Field;
 
     getBackgroundImage(): string {
-        return "rock";
+        return "rock_" + ((this.field.x * this.field.y + this.field.y) % 2 + 1)
     }
 
 }

@@ -2,6 +2,6 @@
 .tile-clickable {
     cursor: pointer;
     &:hover {
-        filter: brightness(2);
+        filter: brightness(1.2);
     }
 }

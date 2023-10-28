@@ -1,9 +1,11 @@
 import {FieldType} from "../../../core/model/field/FieldType";
-import {FarmlandComponent} from "../../grid/tile/farmland/farmland.component";
-import {FarmerComponent} from "../../grid/tile/farmer/farmer.component";
-import {RockComponent} from "../../grid/tile/rock/rock.component";
-import {WaterChannelComponent} from "../../grid/tile/water-channel/water-channel.component";
 import {FarmlandPopupComponent} from "./field-popup/farmland-popup/farmland-popup.component";
+import {FarmerPopupComponent} from "./field-popup/farmer-popup/farmer-popup.component";
+import {WaterChannelPopupComponent} from "./field-popup/water-channel-popup/water-channel-popup.component";
+import {RockPopupComponent} from "./field-popup/rock-popup/rock-popup.component";
 
 export const PopupTypes = new Map<FieldType, any>();
 PopupTypes.set(FieldType.FARMLAND, FarmlandPopupComponent)
+PopupTypes.set(FieldType.FARMER, FarmerPopupComponent)
+PopupTypes.set(FieldType.WATER_CHANNEL, WaterChannelPopupComponent)
+PopupTypes.set(FieldType.ROCK, RockPopupComponent)

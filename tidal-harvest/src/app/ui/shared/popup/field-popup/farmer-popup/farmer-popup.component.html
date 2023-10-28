@@ -1,0 +1,5 @@
+<ng-container *ngIf="field">
+    <span>Speicher: {{field.crops}} / {{field.storageCapacity}}</span>
+    <span *ngIf="field.crop">pflanzt: {{field.crop.cropKey}}</span>
+    <span *ngIf="field.currentFarmland">Arbeitet auf: ({{field.currentFarmland.x}} | {{field.currentFarmland.y}})</span>
+</ng-container>

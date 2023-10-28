@@ -4,13 +4,26 @@
     z-index: 10;
     background-color: transparent;
     color: black;
-    padding: 5px;
+    padding: 8px;
 
     &.popup-small {
         background-image: url("/assets/ui/popup_small.png");
         background-size: 100%;
         width: 100px;
-        height: 44px;
+        height: 41px;
+    }
+
+    &.popup-big {
+        background-image: url("/assets/ui/popup_big.png");
+        background-size: 100%;
+        width: 200px;
+        height: 86px;
+        padding: 20px;
+
+        .close-btn {
+            top: -4px;
+            left: 220px;
+        }
     }
 
     h1 {
