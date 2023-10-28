@@ -2,16 +2,19 @@ import {GameObject} from "./GameObject";
 import {Matrix} from "../model/Matrix";
 import {Farmland} from "../model/field/farm/Farmland";
 import {FarmlandState} from "../model/field/farm/FarmlandState";
+import {tick} from "@angular/core/testing";
 
 export class FarmlandGameObject implements GameObject {
 
     private _farmland: Farmland;
+    private _invalidated: boolean = false;
 
     public constructor(farmland: Farmland) {
         this._farmland = farmland;
     }
 
     tick(matrix: Matrix, tick: number): boolean {
+        if(this._invalidated) return false;
         if(tick % 10 === 0){
             this._farmland.humidity *= 0.99;
         }
@@ -27,6 +30,10 @@ export class FarmlandGameObject implements GameObject {
 
 
         return false;
+    }
+
+    invalidate(): void {
+        this._invalidated = true;
     }
 
 }

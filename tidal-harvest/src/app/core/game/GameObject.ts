@@ -4,4 +4,6 @@ export interface GameObject {
 
     tick(matrix: Matrix, tick: number): boolean;
 
+    invalidate(): void;
+
 }

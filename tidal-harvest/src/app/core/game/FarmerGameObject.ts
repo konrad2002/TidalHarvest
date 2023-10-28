@@ -7,12 +7,15 @@ import {FarmlandState} from "../model/field/farm/FarmlandState";
 
 export class FarmerGameObject implements GameObject {
     private readonly _farmer: Farmer;
+    private _invalidated: boolean = false;
 
     public constructor(farmer: Farmer) {
         this._farmer = farmer;
     }
 
     public tick(matrix: Matrix, tick: number): boolean {
+        if (this._invalidated) return false;
+
         const currentFarmland = this._farmer.currentFarmland;
 
         switch (this._farmer.task) {
@@ -24,7 +27,7 @@ export class FarmerGameObject implements GameObject {
                 if (task === FarmerTask.NONE) return false;
                 return this.tick(matrix, tick);
             case FarmerTask.HARVESTING:
-                if(currentFarmland?.state !== FarmlandState.HARVESTING){
+                if (currentFarmland?.state !== FarmlandState.HARVESTING) {
                     this.inactivateFarmer();
                     return this.tick(matrix, tick);
                 }
@@ -35,7 +38,7 @@ export class FarmerGameObject implements GameObject {
                 if (currentFarmland?.state === FarmlandState.EMPTY) {
                     currentFarmland.nextState();
                 }
-                if(currentFarmland?.state !== FarmlandState.PLANTING){
+                if (currentFarmland?.state !== FarmlandState.PLANTING) {
                     this.inactivateFarmer();
                     return this.tick(matrix, tick);
                 }
@@ -49,7 +52,7 @@ export class FarmerGameObject implements GameObject {
 
     }
 
-    private inactivateFarmer(){
+    private inactivateFarmer() {
         this._farmer.task = FarmerTask.NONE;
         this._farmer.clearCurrentFarmland();
     }
@@ -99,8 +102,8 @@ export class FarmerGameObject implements GameObject {
                 return FarmerTask.HARVESTING;
             }
         }
-        for(let farmland of farmlands){
-            if(farmland.state === FarmlandState.PLANTING){
+        for (let farmland of farmlands) {
+            if (farmland.state === FarmlandState.PLANTING) {
                 this._farmer.task = FarmerTask.PLANTING;
                 this._farmer.currentFarmland = farmland;
                 return FarmerTask.PLANTING;
@@ -134,6 +137,10 @@ export class FarmerGameObject implements GameObject {
         }
         console.log("relevant neighbouring fields found: " + fields.length);
         return fields;
+    }
+
+    invalidate(): void {
+        this._invalidated = true;
     }
 
 }

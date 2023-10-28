@@ -42,6 +42,9 @@ export class TickMachine {
     }
 
     public changeField(field: Field) {
+
+        this._gameObjects[field.x][field.y].invalidate();
+
         switch (field.fieldType) {
             case FieldType.FARMLAND:
                 this._gameObjects[field.x][field.y] = new FarmlandGameObject(<Farmland>field);
