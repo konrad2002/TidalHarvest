@@ -18,7 +18,9 @@ export class Farmland extends Field {
     }
 
     public calcProgress(): number{
-        return Math.floor(100 * this._progress / this.crop.requiredTicks(this.state));
+        const requiredTicks = this.crop.requiredTicks(this.state);
+        if(requiredTicks == 0) return 0;
+        return Math.floor(100 * this._progress / requiredTicks);
     }
 
     public getFlooredHumidity(): number {
