@@ -31,7 +31,7 @@ export class WaterChannelComponent implements GridTile {
         if (x > 0 && this.matrix.content[x-1][y].fieldType === FieldType.WATER_CHANNEL) str += "_top";
         if (y < this.matrix.y-1 && this.matrix.content[x][y+1].fieldType === FieldType.WATER_CHANNEL) str += "_right";
         if (x < this.matrix.x-1 && this.matrix.content[x+1][y].fieldType === FieldType.WATER_CHANNEL) str += "_bottom";
-        if (y > 0 && this.matrix.content[x][y-1].fieldType === FieldType.WATER_CHANNEL) str += "_left";
+        if (y > 0 && this.matrix.content[x][y-1].fieldType === FieldType.WATER_CHANNEL || y == 1) str += "_left";
 
         return str;
     }

@@ -2,4 +2,10 @@
     <span>Speicher: {{field.crops}} / {{field.storageCapacity}}</span>
     <span *ngIf="field.crop">pflanzt: {{field.crop.cropKey}}</span>
     <span *ngIf="field.currentFarmland">Arbeitet auf: ({{field.currentFarmland.x}} | {{field.currentFarmland.y}})</span>
+    <form [formGroup]="cropForm">
+        <select formControlName="cropType">
+            <option *ngFor="let cropType of cropTypes" [value]="cropType">{{cropType}}</option>
+        </select>
+        <th-button (buttonClick)="selectCropType()">Select</th-button>
+    </form>
 </ng-container>

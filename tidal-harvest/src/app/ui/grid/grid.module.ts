@@ -10,6 +10,7 @@ import { TileBackgroundImgComponent } from './tile/tile-background-img/tile-back
 import { WaterChannelComponent } from './tile/water-channel/water-channel.component';
 import {SharedModule} from "../shared/shared.module";
 import { WaterComponent } from './tile/water/water.component';
+import { SiloComponent } from './tile/silo/silo.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { WaterComponent } from './tile/water/water.component';
         RockComponent,
         TileBackgroundImgComponent,
         WaterChannelComponent,
-        WaterComponent
+        WaterComponent,
+        SiloComponent
     ],
     exports: [
         GridComponent
