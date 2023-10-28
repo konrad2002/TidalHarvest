@@ -28,7 +28,7 @@ export class FarmlandGameObject implements GameObject {
                 } else {
                     this._farmland.progress += 0.3 * this._farmland.fertility;
                 }
-
+                if (this._farmland.crop === undefined) throw new Error();
                 if (this._farmland.progress >= this._farmland.crop
                     .requiredTicks(this._farmland.state)) {
                     this._farmland.nextState();

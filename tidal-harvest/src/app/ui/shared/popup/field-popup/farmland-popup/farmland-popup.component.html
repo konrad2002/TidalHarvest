@@ -1,4 +1,4 @@
 <ng-container *ngIf="field">
     <span>Bewässert: {{field.humidity > 1 ? 'ja' : 'nein'}}</span>
-    <span *ngIf="field.crop">Pflanze: {{field.crop.name}}</span>
+    <span *ngIf="field.crop">Pflanze: {{field.crop.cropKey}}</span>
 </ng-container>

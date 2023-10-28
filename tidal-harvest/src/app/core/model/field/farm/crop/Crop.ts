@@ -37,6 +37,10 @@ export class Crop {
     }
 
 
+    get cropKey(): CropKey {
+        return this._cropKey;
+    }
+
     get requiredHarvestTicks(): number {
         return this._requiredHarvestTicks;
     }
