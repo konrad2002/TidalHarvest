@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {UiService} from "./core/service/ui.service";
-import {FieldType} from "./core/model/field/FieldType";
 
 @Component({
   selector: 'app-root',
@@ -11,11 +9,6 @@ export class AppComponent {
   title = 'tidal-harvest';
 
   constructor(
-      private service: UiService
   ) {
-  }
-
-  addFarmer() {
-      this.service.place(FieldType.FARMER, 4, 5);
   }
 }

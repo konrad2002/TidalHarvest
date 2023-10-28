@@ -1,20 +1,35 @@
+.farmland {
+    background-image: url("/assets/field/farmland.png");
+    background-size: 100%;
+    text-align: center;
+    padding: 4px;
+
+    &:hover .coords {
+        opacity: 1;
+    }
+}
+
 .farmland-0 {
-    background-color: #592b03;
+    //background-color: #592b03;
 }
 .farmland-1 {
-    background-color: #916106;
+    //background-color: #916106;
+    filter: hue-rotate(10deg) brightness(1.5)
 }
 
 .farmland-2 {
-    background-color: #599d1c;
+//    background-color: #599d1c;
+    filter: hue-rotate(115deg) brightness(2);
 }
 
 .farmland-3 {
-    background-color: #e5bf04;
+//    background-color: #e5bf04;
+    filter: hue-rotate(25deg) brightness(3)
 }
 .coords {
     color: #aaa;
-    font-size: 6px;
+    font-size: 4px;
     display: block;
     font-weight: normal;
+    opacity: 0;
 }

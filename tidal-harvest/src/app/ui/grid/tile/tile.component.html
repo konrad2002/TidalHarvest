@@ -1,2 +1,3 @@
-
-<ng-template thGridTile></ng-template>
+<div class="tile-container {{isClickable() ? 'tile-clickable' : '' }}" (click)="onTileClick()">
+    <ng-template thGridTile></ng-template>
+</div>

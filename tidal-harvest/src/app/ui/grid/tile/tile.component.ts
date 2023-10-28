@@ -1,9 +1,10 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {Field} from "../../../core/model/field/Field";
 import {GridTileDirective} from "../../core/directive/grid-tile.directive";
 import {GridTile} from "./tile.interface";
-import {FarmlandComponent} from "./farmland/farmland.component";
 import {TileTypes} from "./tile-types.constant";
+import {FieldType} from "../../../core/model/field/FieldType";
+import {Coordinates} from "../../../core/model/Coordinates";
 
 @Component({
   selector: 'th-grid-tile',
@@ -12,6 +13,9 @@ import {TileTypes} from "./tile-types.constant";
 })
 export class TileComponent implements OnInit, OnChanges {
     @Input() field!: Field
+    @Input() placing?: FieldType;
+
+    @Output() tileClick: EventEmitter<Coordinates> = new EventEmitter<Coordinates>();
 
     @ViewChild(GridTileDirective, {static: true}) thGridTile!: GridTileDirective;
 
@@ -31,8 +35,18 @@ export class TileComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         const fieldChanges = changes['field']
-        if (!fieldChanges.firstChange && fieldChanges.currentValue.fieldType != fieldChanges.previousValue.fieldType) {
+        if (fieldChanges && !fieldChanges.firstChange && fieldChanges.currentValue.fieldType != fieldChanges.previousValue.fieldType) {
             this.updateView();
         }
+    }
+
+    isClickable(): boolean {
+        if (this.placing === undefined) return false;
+        return this.field.fieldType != this.placing;
+    }
+
+    onTileClick() {
+        if (!this.isClickable()) return;
+        this.tileClick.emit(new Coordinates(this.field.x, this.field.y));
     }
 }

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Farmer} from "../../../../core/model/field/Farmer";
+import {Farmer} from "../../../../core/model/field/farm/Farmer";
 
 @Component({
   selector: 'th-farmer',

@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {GridTile} from "../tile.interface";
-import {Farmland} from "../../../../core/model/field/Farmland";
+import {FieldType} from "../../../../core/model/field/FieldType";
+import {Farmland} from "../../../../core/model/field/farm/Farmland";
 
 @Component({
   selector: 'th-farmland',
@@ -9,4 +10,6 @@ import {Farmland} from "../../../../core/model/field/Farmland";
 })
 export class FarmlandComponent implements GridTile{
     @Input() field!: Farmland;
+    @Input() placing?: FieldType;
+
 }

@@ -1,28 +1,39 @@
 import {GameObject} from "./GameObject";
 import {Matrix} from "../model/Matrix";
-import {Farmland} from "../model/field/Farmland";
-import {FarmlandState} from "../model/field/FarmlandState";
+import {Farmland} from "../model/field/farm/Farmland";
+import {FarmlandState} from "../model/field/farm/FarmlandState";
+import {tick} from "@angular/core/testing";
 
 export class FarmlandGameObject implements GameObject {
 
     private _farmland: Farmland;
+    private _invalidated: boolean = false;
 
     public constructor(farmland: Farmland) {
         this._farmland = farmland;
     }
 
-    tick(matrix: Matrix): boolean {
+    tick(matrix: Matrix, tick: number): boolean {
+        if(this._invalidated) return false;
+        if(tick % 10 === 0){
+            this._farmland.humidity *= 0.99;
+        }
         switch (this._farmland.state) {
             case FarmlandState.GROWING:
                 // console.log("grow " + this._farmland.x + " " + this._farmland.y);
-                this._farmland.progress++;
-                if(this._farmland.progress >= this._farmland.crop.requiredTicks(this._farmland.state)){
+                this._farmland.progress += this._farmland.humidity * this._farmland.fertility;
+                if (this._farmland.progress >= this._farmland.crop.requiredTicks(this._farmland.state)) {
                     this._farmland.nextState();
                 }
                 return true;
         }
 
+
         return false;
+    }
+
+    invalidate(): void {
+        this._invalidated = true;
     }
 
 }

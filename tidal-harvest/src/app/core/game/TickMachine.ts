@@ -4,9 +4,9 @@ import {GameObject} from "./GameObject";
 import {Field} from "../model/field/Field";
 import {FieldType} from "../model/field/FieldType";
 import {FarmlandGameObject} from "./FarmlandGameObject";
-import {Farmland} from "../model/field/Farmland";
+import {Farmland} from "../model/field/farm/Farmland";
 import {FarmerGameObject} from "./FarmerGameObject";
-import {Farmer} from "../model/field/Farmer";
+import {Farmer} from "../model/field/farm/Farmer";
 
 export class TickMachine {
 
@@ -29,18 +29,22 @@ export class TickMachine {
             });
         });
 
-
+        let counter = 0;
         setInterval(() => {
+            counter++;
             this._gameObjects.forEach(outer => {
                 outer.forEach(inner => {
-                    inner.tick(this._matrix);
+                    inner.tick(this._matrix, counter);
                 });
             });
             this._tick.next(this._matrix);
-        }, 500);
+        }, 1000);
     }
 
     public changeField(field: Field) {
+
+        this._gameObjects[field.x][field.y]?.invalidate();
+
         switch (field.fieldType) {
             case FieldType.FARMLAND:
                 this._gameObjects[field.x][field.y] = new FarmlandGameObject(<Farmland>field);

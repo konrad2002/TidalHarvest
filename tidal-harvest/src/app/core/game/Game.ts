@@ -2,9 +2,11 @@ import {Matrix} from "../model/Matrix";
 import {TickMachine} from "./TickMachine";
 import {Field} from "../model/field/Field";
 import {FieldType} from "../model/field/FieldType";
-import {Farmland} from "../model/field/Farmland";
-import {Farmer} from "../model/field/Farmer";
+import {Farmland} from "../model/field/farm/Farmland";
+import {Farmer} from "../model/field/farm/Farmer";
 import {Observable} from "rxjs";
+import {WaterChannel} from "../model/field/water/WaterChannel";
+import {Rock} from "../model/field/rock/Rock";
 
 export class Game {
 
@@ -17,7 +19,7 @@ export class Game {
     }
 
     public place(fieldType: FieldType, x: number, y: number){
-        let field: Field;
+        let field: Field
         switch (fieldType) {
             case FieldType.FARMLAND:
                 field = new Farmland(x, y);
@@ -26,8 +28,10 @@ export class Game {
                 field = new Farmer(x, y);
                 break;
             case FieldType.ROCK:
-                throw new Error();
+                field = new Rock(x, y);
                 break;
+            case FieldType.WATER:
+                field = new WaterChannel(x, y);
         }
         this._matrix.content[x][y] = field;
         this._tickMachine.tick.next(this._matrix);
