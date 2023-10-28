@@ -7,7 +7,9 @@ import {Farmer} from "../model/field/farm/Farmer";
 import {Observable} from "rxjs";
 import {WaterChannel} from "../model/field/water/WaterChannel";
 import {Rock} from "../model/field/rock/Rock";
-import {Water} from "../model/field/water/Water";
+import {WaterSource} from "../model/field/water/WaterSource";
+import {Silo} from "../model/field/farm/Silo";
+import {CropKey} from "../model/field/farm/crop/CropKey";
 
 export class Game {
 
@@ -34,9 +36,11 @@ export class Game {
             case FieldType.WATER_CHANNEL:
                 field = new WaterChannel(x, y);
                 break;
-            case FieldType.WATER:
-                field = new Water(x, y);
+            case FieldType.WATER_SOURCE:
+                field = new WaterSource(x, y);
                 break;
+            case FieldType.SILO:
+                field = new Silo(x, y, CropKey.WHEAT);
         }
         this._matrix.content[x][y] = field;
         this._tickMachine.tick.next(this._matrix);

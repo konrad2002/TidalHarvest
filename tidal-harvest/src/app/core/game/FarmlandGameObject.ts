@@ -16,20 +16,21 @@ export class FarmlandGameObject implements GameObject {
     tick(matrix: Matrix, tick: number): boolean {
         if (this._invalidated) return false;
         if (tick % (Math.floor(Math.random() * 10) + 5) === 0) {
-            if (!this._farmland.watered) {
-                this._farmland.humidity = Math.max(0, this._farmland.humidity - Math.random() * 0.1);
-            }
-            if (this._farmland.watered) {
-                this._farmland.humidity = Math.min(3, this._farmland.humidity + 0.05);
-            }
+            this._farmland.applyWaterRules();
         }
         switch (this._farmland.state) {
             case FarmlandState.GROWING:
                 // console.log("grow " + this._farmland.x + " " + this._farmland.y);
-                this._farmland.progress += Math.min(Math.max(1,
-                        Math.floor(this._farmland.humidity)), 2)
-                    * this._farmland.fertility;
-                if (this._farmland.progress >= this._farmland.crop.requiredTicks(this._farmland.state)) {
+                if (this._farmland.humidity > 1) {
+                    this._farmland.progress += 2 * this._farmland.fertility;
+                } else if (this._farmland.humidity > 0.5) {
+                    this._farmland.progress += this._farmland.fertility;
+                } else {
+                    this._farmland.progress += 0.3 * this._farmland.fertility;
+                }
+
+                if (this._farmland.progress >= this._farmland.crop
+                    .requiredTicks(this._farmland.state)) {
                     this._farmland.nextState();
                 }
                 return true;
@@ -38,6 +39,7 @@ export class FarmlandGameObject implements GameObject {
 
         return false;
     }
+
 
     invalidate(): void {
         this._invalidated = true;
