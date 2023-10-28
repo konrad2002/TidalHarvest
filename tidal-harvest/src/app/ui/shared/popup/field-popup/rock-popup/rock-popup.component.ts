@@ -10,8 +10,50 @@ import {Field} from "../../../../../core/model/field/Field";
 export class RockPopupComponent implements FieldPopup{
     @Input() field!: Field;
 
+    names: string[] = [
+        "Günther",
+        "Franz",
+        "Gisela",
+        "Bernhard",
+        "Ida",
+        "Maximilian",
+        "Paul",
+        "Konrad",
+        "Carmen",
+        "Luca",
+        "Tom",
+        "Tamara",
+        "Tim",
+        "Joshua",
+        "Alexandra",
+        "Hermine",
+        "Tom Cruz",
+        "Michael Jackson",
+        "Santa Claus",
+        "Egon",
+        "Martin",
+        "Sabine",
+        "Susanne",
+        "Magdalena",
+        "Johanna",
+        "Jasmin",
+        "Anton",
+        "Peter",
+        "Petros",
+        "Anita",
+        "Sascha",
+        "Karl",
+        "Karlos",
+        "Karla",
+        "Martina",
+        "Sebastian",
+        "Cornelia",
+        "Cassandra",
+        "Angelina"
+    ];
+
     getTitle(): string {
-        return "Einstein";
+        return this.names[(Math.floor(this.field.x * Math.pow(this.field.y, 3))) % this.names.length];
     }
 
 }
