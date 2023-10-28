@@ -1,7 +1,9 @@
 <div class="row" *ngFor="let item of [].constructor(matrix.x); let i = index">
     <div class="field" *ngFor="let item of [].constructor(matrix.y); let j = index">
         <th-grid-tile
+            (tileClick)="onFieldClick($event)"
             [field]="matrix.content[i][j]"
+            [placing]="placing"
         ></th-grid-tile>
     </div>
 </div>

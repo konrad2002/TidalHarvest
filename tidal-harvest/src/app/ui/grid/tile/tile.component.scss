@@ -1,1 +1,7 @@
 
+.tile-clickable {
+    cursor: pointer;
+    &:hover {
+        filter: brightness(2);
+    }
+}

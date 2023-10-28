@@ -1,4 +1,10 @@
+<button class="{{placing === FieldType.FARMER ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.FARMER)">PLACE FARMER</button>
+<button class="{{placing === FieldType.FARMLAND ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.FARMLAND)">PLACE FARMLAND</button>
+<button class="{{placing === FieldType.ROCK ? 'btn-place-active' : ''}}" (click)="setPlacing(FieldType.ROCK)">PLACE ROCK</button>
+
 <th-grid
     *ngIf="matrix"
     [matrix]="matrix"
+    [placing]="placing"
+    (fieldClick)="onFieldClick($event)"
 ></th-grid>
