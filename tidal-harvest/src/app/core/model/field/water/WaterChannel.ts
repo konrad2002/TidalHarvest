@@ -1,14 +1,15 @@
 import {Field} from "../Field";
 import {FieldType} from "../FieldType";
 import {Matrix} from "../../Matrix";
-import {Farmland} from "../farm/Farmland";
 import {WaterEmitter} from "./WaterEmitter";
 import {WaterSource} from "./WaterSource";
+import {WaterInflowCalculator} from "../../../game/WaterInflowCalculator";
 
 export class WaterChannel extends Field implements WaterEmitter {
 
     private _powered: boolean = false;
     private readonly _range = 1;
+    private readonly _waterInflowCalculator = new WaterInflowCalculator();
 
     public constructor(x: number, y: number) {
         super(FieldType.WATER_CHANNEL, x, y);
@@ -56,33 +57,36 @@ export class WaterChannel extends Field implements WaterEmitter {
         return false;
     }
 
-    public waterNeighbourFields(matrix: Matrix) {
-        if (this.powered)
-            for (let i = Math.max(0, this.x - this.range);
-                 i <= Math.min(this.x + this.range, matrix.x); i++) {
-                for (let j = Math.max(0, this.y - this.range);
-                     j <= Math.min(this.y + this.range, matrix.y); j++) {
-                    console.log("checking if " + i + " " + j + " is watered now")
-                    const field = matrix.content[i][j];
-                    if (field?.fieldType === FieldType.FARMLAND) {
-                        const farmLand = field as Farmland;
-                        farmLand.watered = true;
-                        console.log("yes")
-                    }
-                    if (field?.fieldType === FieldType.WATER_CHANNEL) {
-                        const waterChannel = field as WaterChannel;
-                        if (!waterChannel.powered) {
-                            waterChannel.updatePowered(matrix);
-                            waterChannel.waterNeighbourFields(matrix);
-                        }
+    public powerNeighbourFields(matrix: Matrix) {
+        if (!this.powered) {
+            return;
+        }
+        for (let i = Math.max(0, this.x - this.range);
+             i <= Math.min(this.x + this.range, matrix.x); i++) {
+            for (let j = Math.max(0, this.y - this.range);
+                 j <= Math.min(this.y + this.range, matrix.y); j++) {
+                console.log("checking if " + i + " " + j + " is watered now")
+                const field = matrix.content[i][j];
+                if (field?.fieldType === FieldType.WATER_CHANNEL) {
+                    const waterChannel = field as WaterChannel;
+                    if (!waterChannel.powered) {
+                        waterChannel.updatePowered(matrix);
+                        waterChannel.powerNeighbourFields(matrix);
                     }
                 }
             }
+        }
+
+        this._waterInflowCalculator.updateWaterInflow(matrix, this, this.x, this.y);
+
     }
 
-    public getRemainingStrength(distance: number): number {
-        return Math.floor(10 / ((distance + 1) ^ 3));
 
+    public getRemainingStrength(distance: number): number {
+        if (distance === 1) return 0.1;
+        if (distance === 2) return 0.04;
+        if (distance === 3) return 0.025;
+        return 0;
     }
 
 }

@@ -9,9 +9,8 @@ export class Farmland extends Field {
     private _progress: number = 0;
     private _fertility: number = 1;
     private _humidity: number = 1;
-    private _watered: boolean = false;
     private _waterInflow: number = 0;
-    private _waterDrought: number = Math.random() * 0.1;
+    private _waterDrought: number = 0.05; //Math.random() * 0.1;
     private _crop?: Crop = undefined;
 
     public constructor(x: number, y: number) {
@@ -51,13 +50,12 @@ export class Farmland extends Field {
     }
 
     public applyWaterRules(): void {
-        if (!this.watered) {
-            this.humidity = Math.max(0, this.humidity
-                - this._waterDrought + this.waterInflow);
-        }
-        if (this.watered) {
-            this.humidity = Math.min(3, this.humidity + 0.05);
-        }
+
+        const waterChange = this.humidity
+            - this._waterDrought + this._waterInflow;
+        // console.log("water change at " + this.x + " " + this.y + " is " + waterChange);
+        this.humidity = Math.max(0, Math.min(waterChange, 3));
+
     }
 
     get state(): FarmlandState {
@@ -90,14 +88,6 @@ export class Farmland extends Field {
 
     set humidity(value: number) {
         this._humidity = value;
-    }
-
-    get watered(): boolean {
-        return this._watered;
-    }
-
-    set watered(value: boolean) {
-        this._watered = value;
     }
 
     get waterInflow(): number {

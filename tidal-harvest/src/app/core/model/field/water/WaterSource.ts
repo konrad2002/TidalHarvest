@@ -9,8 +9,8 @@ export class WaterSource extends Field implements WaterEmitter {
     }
 
     public getRemainingStrength(distance: number): number {
-        return Math.floor(10 / ((distance + 1)));
+        if(distance >= 10) return 0;
+        return Math.min(10, 1.3 / (70 * distance));
     }
-
 
 }

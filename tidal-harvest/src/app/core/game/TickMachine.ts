@@ -8,6 +8,8 @@ import {Farmland} from "../model/field/farm/Farmland";
 import {FarmerGameObject} from "./FarmerGameObject";
 import {Farmer} from "../model/field/farm/Farmer";
 import {WaterChannel} from "../model/field/water/WaterChannel";
+import {WaterInflowCalculator} from "./WaterInflowCalculator";
+import {WaterEmitter} from "../model/field/water/WaterEmitter";
 
 export class TickMachine {
 
@@ -45,22 +47,24 @@ export class TickMachine {
     public changeField(field: Field) {
 
         this._gameObjects[field.x][field.y]?.invalidate();
-
+        const waterInflowCalculator = new WaterInflowCalculator();
         switch (field.fieldType) {
             case FieldType.FARMLAND:
                 this._gameObjects[field.x][field.y] = new FarmlandGameObject(<Farmland>field);
-                break;
+                return;
             case FieldType.FARMER:
                 this._gameObjects[field.x][field.y] = new FarmerGameObject(<Farmer>field);
-                break;
+                return;
             case FieldType.ROCK:
-                break;
+                return;
             case FieldType.WATER_CHANNEL:
                 (<WaterChannel>field).updatePowered(this._matrix);
-                (<WaterChannel>field).waterNeighbourFields(this._matrix);
-                break;
+                (<WaterChannel>field).powerNeighbourFields(this._matrix);
+                return;
             case FieldType.WATER_SOURCE:
-                break;
+                const waterSource: WaterEmitter = field as unknown as WaterEmitter;
+                waterInflowCalculator.updateWaterInflow(this._matrix, waterSource, field.x, field.y)
+                return;
         }
     }
 
