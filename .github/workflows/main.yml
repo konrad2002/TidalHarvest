@@ -138,7 +138,7 @@ jobs:
       env:
         cache-name: cache-dist
       with:
-        path: dist/
+        path: ./tidal-harvest/dist/
         key: ${{ runner.os }}-${{ github.run_id }}
 
      # Build and push Docker image with Buildx (don't push on PR)
@@ -147,7 +147,7 @@ jobs:
       id: build-and-push
       uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
       with:
-        context: .
+        context: ./tidal-harvest/
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
