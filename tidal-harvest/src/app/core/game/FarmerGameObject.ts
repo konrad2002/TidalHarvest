@@ -6,7 +6,6 @@ import {Farmland} from "../model/field/Farmland";
 import {FarmlandState} from "../model/field/FarmlandState";
 
 export class FarmerGameObject implements GameObject {
-
     private readonly _farmer: Farmer;
 
     public constructor(farmer: Farmer) {
@@ -18,17 +17,18 @@ export class FarmerGameObject implements GameObject {
 
         switch (this._farmer.task) {
             case FarmerTask.NONE:
-                console.log("finding next task for farmer at " +
-                    this._farmer.x + " " + this._farmer.y)
+                // console.log("finding next task for farmer at " + this._farmer.x + " " + this._farmer.y)
                 const task = this.findNextTask(this.findRelevantFields(matrix));
-                console.log("new task " + task.toString());
+                // console.log("new task " + task.toString());
                 if (task === FarmerTask.NONE) return false;
                 return this.tick(matrix);
             case FarmerTask.HARVESTING:
                 this.executeTask(currentFarmland);
                 return true;
             case FarmerTask.SEEDING:
-                currentFarmland?.nextState();
+                if(currentFarmland?.state === FarmlandState.EMPTY){
+                    currentFarmland.nextState();
+                }
                 this.executeTask(currentFarmland);
                 return true;
 
@@ -37,15 +37,14 @@ export class FarmerGameObject implements GameObject {
                 return this.tick(matrix);
         }
 
-        return false;
     }
 
     private executeTask(farmLand?: Farmland): void {
         if (farmLand === undefined) throw new Error();
-        console.log("executing task " + farmLand.state.toString()
-            + " at " + farmLand.x + " " + farmLand.y);
+        // console.log("executing task " + farmLand.state.toString() + " at " + farmLand.x + " " + farmLand.y);
         farmLand.progress++; // todo multiply farmer efficiency
         if (farmLand.progress >= farmLand.crop.requiredTicks(farmLand.state)) {
+            // console.log("switching " + farmLand.x + " " + farmLand.y + "to next state");
             farmLand.nextState();
             this._farmer.task = FarmerTask.NONE;
         }
@@ -85,7 +84,7 @@ export class FarmerGameObject implements GameObject {
                 fields.push(field);
             }
         }
-
+        console.log("relevant neighbouring fields found: " + fields.length);
         return fields;
     }
 
