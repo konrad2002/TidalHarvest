@@ -33,6 +33,9 @@ export class FarmerGameObject implements GameObject {
                 return this.tick(matrix, tick);
             case FarmerTask.HARVESTING:
                 if (currentFarmland?.state !== FarmlandState.HARVESTING) {
+                    if (this._farmer.currentFarmland) {
+                        this._farmer.currentFarmland.crop = undefined;
+                    }
                     this.inactivateFarmer();
                     return this.tick(matrix, tick);
                 }

@@ -2,6 +2,7 @@ import {Field} from "./field/Field";
 import {Farmland} from "./field/farm/Farmland";
 import {Rock} from "./field/rock/Rock";
 import {FieldType} from "./field/FieldType";
+import {WaterSource} from "./field/water/WaterSource";
 
 export class Matrix {
 
@@ -26,6 +27,7 @@ export class Matrix {
                 content[i][j] = new Farmland(i, j);
             }
         }
+
         const rockSeeds = 0.04;
 
         for (let i = 0; i < x; i++) {
@@ -71,6 +73,10 @@ export class Matrix {
                     }
                 }
             }
+        }
+
+        for (let i = 0; i < content.length; i++) {
+            content[i][0] = new WaterSource(i, 0);
         }
 
         return content;

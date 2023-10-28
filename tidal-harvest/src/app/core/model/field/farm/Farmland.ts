@@ -112,7 +112,7 @@ export class Farmland extends Field {
         return this._crop;
     }
 
-    set crop(value: Crop) {
+    set crop(value: Crop | undefined) {
         this._crop = value;
     }
 
