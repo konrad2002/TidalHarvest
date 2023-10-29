@@ -5,6 +5,8 @@ import {Coordinates} from "../core/model/Coordinates";
 import {FieldType} from "../core/model/field/FieldType";
 import {PlacingModel} from "./core/model/placing.model";
 import {CropKey} from "../core/model/field/farm/crop/CropKey";
+import {Price} from "../core/model/economy/Price";
+import {CropAmount} from "../core/model/economy/CropAmount";
 
 @Component({
   selector: 'th-ui',
@@ -12,6 +14,9 @@ import {CropKey} from "../core/model/field/farm/crop/CropKey";
   styleUrls: ['./ui.component.scss']
 })
 export class UiComponent {
+
+    price: Price;
+
 
     matrix?: Matrix;
 
@@ -29,6 +34,10 @@ export class UiComponent {
         this.service.cropCount().subscribe(data => {
             this.siloCount = data;
         })
+
+        let ca = new CropAmount(this.CropKey.CORN, 200);
+        let ca2 = new CropAmount(this.CropKey.WHEAT, 500);
+        this.price = new Price([ca, ca2]);
     }
 
     onFieldClick($event: Coordinates) {

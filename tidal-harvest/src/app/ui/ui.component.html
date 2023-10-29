@@ -1,5 +1,6 @@
 
 <div class="header">
+    <th-buy-button [price]="price" buttonTitle="Freischalten"></th-buy-button>
     <th-button [active]="false" [buttonType]="'normal'" (buttonClick)="triggerFlood()">Flut auslösen</th-button>
     <th-button [buttonType]="placeMode ? 'fail' : 'normal'" (buttonClick)="togglePlaceMode()">{{placeMode ? 'beenden' : 'Baumodus'}}</th-button>
     <ng-container *ngFor="let crop of siloCount.keys();">
