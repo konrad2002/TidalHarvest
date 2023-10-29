@@ -1,8 +1,11 @@
 
 <div class="header">
-    <th-button [buttonType]="'normal'" (buttonClick)="triggerFlood()">Flut auslösen</th-button>
+    <th-button [active]="false" [buttonType]="'normal'" (buttonClick)="triggerFlood()">Flut auslösen</th-button>
     <th-button [buttonType]="placeMode ? 'fail' : 'normal'" (buttonClick)="togglePlaceMode()">{{placeMode ? 'beenden' : 'Baumodus'}}</th-button>
-
+    <ng-container *ngFor="let crop of siloCount.keys();">
+        <th-crop-icon [crop]="crop"></th-crop-icon>
+        <th-progress *ngIf="siloCount.get(crop)" [values]="siloCount.get(crop)"></th-progress>
+    </ng-container>
 </div>
 
 <div class="footer">
@@ -12,8 +15,9 @@
         <th-button [buttonType]="placing?.fieldType === FieldType.ROCK ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.ROCK)">{{placing?.fieldType === FieldType.ROCK ? 'abbrechen' : 'Stein setzen'}}</th-button>
         <th-button [buttonType]="placing?.fieldType === FieldType.WATER_CHANNEL ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.WATER_CHANNEL)">{{placing?.fieldType === FieldType.WATER_CHANNEL ? 'abbrechen' : 'Graben setzen'}}</th-button>
 
-        <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.WHEAT ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.WHEAT)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.WHEAT ? 'abbrechen' : 'Weizen Silo'}}</th-button>
-        <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.BARLEY ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.BARLEY)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.BARLEY ? 'abbrechen' : 'Hirse Silo'}}</th-button>
+        <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.WHEAT ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.WHEAT)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.WHEAT ? 'abbrechen' : 'Weizensilo'}}</th-button>
+        <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.MELON ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.MELON)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.MELON ? 'abbrechen' : 'Melonensilo'}}</th-button>
+        <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.CORN ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.CORN)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.CORN ? 'abbrechen' : 'Maissilo'}}</th-button>
 
     </div>
     &copy; Carmen, Entjic (V) und Konrad

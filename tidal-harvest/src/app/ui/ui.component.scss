@@ -12,15 +12,19 @@ th-grid {
 .header,
 .footer {
     position: fixed;
-    background-color: transparent;
     z-index: 11;
     width: 100%;
+    background-color: #eac168;
+    color: black;
 }
 
 .header {
     top: 0;
+    border-bottom: 2px solid black;
 }
 
 .footer {
     bottom: 0;
+    border-top: 2px solid black;
 }
+

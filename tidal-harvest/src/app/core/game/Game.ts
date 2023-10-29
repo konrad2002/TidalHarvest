@@ -87,7 +87,7 @@ export class Game {
         return this._tickMachine.flood;
     }
 
-    public cropCount(): Observable<Map<CropKey, number>> {
+    public cropCount(): Observable<Map<CropKey, number[]>> {
         return this._tickMachine.globalCrops;
     }
 

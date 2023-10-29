@@ -11,6 +11,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { WaterSourcePopupComponent } from './popup/field-popup/water-source-popup/water-source-popup.component';
 import { SiloPopupComponent } from './popup/field-popup/silo-popup/silo-popup.component';
 import { BigPopupComponent } from './popup/big-popup/big-popup.component';
+import { ProgressComponent } from './progress/progress.component';
+import { CropIconComponent } from './icon/crop-icon/crop-icon.component';
 
 
 
@@ -24,13 +26,17 @@ import { BigPopupComponent } from './popup/big-popup/big-popup.component';
         ButtonComponent,
         WaterSourcePopupComponent,
         SiloPopupComponent,
-        BigPopupComponent
+        BigPopupComponent,
+        ProgressComponent,
+        CropIconComponent
 
     ],
     exports: [
         FieldPopupComponent,
         ButtonComponent,
-        BigPopupComponent
+        BigPopupComponent,
+        ProgressComponent,
+        CropIconComponent
     ],
     imports: [
         CommonModule,

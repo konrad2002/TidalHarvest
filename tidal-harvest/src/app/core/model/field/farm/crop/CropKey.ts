@@ -1,5 +1,5 @@
 export enum CropKey {
-    WHEAT = "Wheat",
-    BARLEY = "Barley",
-    CACTUS = "Cactus"
+    WHEAT = "Weizen",
+    MELON = "Melonen",
+    CORN = "Mais"
 }

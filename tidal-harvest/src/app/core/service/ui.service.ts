@@ -52,5 +52,9 @@ export class UiService {
         this.game.collectCrops(x, y);
     }
 
+    public cropCount(): Observable<Map<CropKey, number[]>>{
+        return this.game.cropCount();
+    }
+
 
 }

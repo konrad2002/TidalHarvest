@@ -5,18 +5,18 @@ export class Crop {
 
     public static readonly WHEAT = new Crop(CropKey.WHEAT,
         20, 80, 15);
-    public static readonly BARLEY = new Crop(CropKey.BARLEY,
+    public static readonly BARLEY = new Crop(CropKey.MELON,
         10, 60, 10);
-    public static readonly CACTUS = new Crop(CropKey.CACTUS,
+    public static readonly CACTUS = new Crop(CropKey.CORN,
         30, 180, 20);
 
     public static parse(cropKey: CropKey): Crop {
         switch (cropKey) {
             case CropKey.WHEAT:
                 return Crop.WHEAT;
-            case CropKey.BARLEY:
+            case CropKey.MELON:
                 return Crop.BARLEY;
-            case CropKey.CACTUS:
+            case CropKey.CORN:
                 return Crop.CACTUS;
         }
     }
