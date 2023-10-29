@@ -8,3 +8,21 @@
     width: 100%;
     text-align: center;
 }
+
+
+th-crop-icon {
+    position: absolute;
+    margin-top: -4px;
+    margin-left: -4px;
+
+    &.full-icon {
+        background: none;
+        margin-top: 18px;
+        border: none;
+        margin-left: 16px;
+        cursor: pointer;
+        scale: 2;
+    }
+}
+
+

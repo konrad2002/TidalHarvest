@@ -18,12 +18,17 @@ export class UiComponent {
     placing?: PlacingModel;
     placeMode: boolean = false;
 
+    siloCount: Map<CropKey, number[]> = new Map<CropKey, number[]>();
+
     constructor(
         private service: UiService
     ) {
         this.service.getMatrix().subscribe(data => {
             this.matrix = data;
         });
+        this.service.cropCount().subscribe(data => {
+            this.siloCount = data;
+        })
     }
 
     onFieldClick($event: Coordinates) {

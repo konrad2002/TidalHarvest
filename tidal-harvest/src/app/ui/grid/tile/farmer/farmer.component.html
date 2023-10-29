@@ -1,6 +1,13 @@
 <th-tile-background-img
     [image]="getBackgroundImage()"
 ></th-tile-background-img>
+<th-crop-icon class="task-icon" *ngIf="field.crop" [crop]="field.crop.cropKey"></th-crop-icon>
+<th-crop-icon
+        class="full-icon"
+        *ngIf="field.crops >= field.storageCapacity"
+        [crop]="field.crop.cropKey"
+        (click)="collect()"
+></th-crop-icon>
 <ng-container *ngIf="field && false">
     {{field.task}} <span *ngIf="field.currentFarmland">> {{field.currentFarmland.x}};{{field.currentFarmland.y}}</span>
 </ng-container>

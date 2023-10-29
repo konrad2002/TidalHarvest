@@ -95,11 +95,7 @@ export class Game {
         return this._tickMachine.flood;
     }
 
-    public unlockedCrops(): Observable<CropKey[]> {
-        return this._cropUnlockedRegistry.subject;
-    }
-
-    public cropCount(): Observable<Map<CropKey, number>> {
+    public cropCount(): Observable<Map<CropKey, number[]>> {
         return this._tickMachine.globalCrops;
     }
 

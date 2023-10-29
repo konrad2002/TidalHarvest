@@ -20,7 +20,7 @@ export class TickMachine {
     private readonly _matrix: Matrix;
     private _tick: Subject<Matrix> = new Subject<Matrix>();
     private _flood: Subject<boolean[][]> = new Subject<boolean[][]>();
-    private _globalCrops: Subject<Map<CropKey, number>> = new Subject<Map<CropKey, number>>();
+    private _globalCrops: Subject<Map<CropKey, number[]>> = new Subject<Map<CropKey, number[]>>();
 
     private _gameObjects: GameObject[][] = [];
 
@@ -47,14 +47,40 @@ export class TickMachine {
                 });
             });
             this._tick.next(this._matrix);
-            this._globalCrops.next(this._matrix.countCrops()); // probably calls #countCrops way too often (no time to fix)
-            if (counter % 120 === 0) {
+            this._globalCrops.next(this.countCrops()); // probably calls #countCrops way too often (no time to fix)
+            if (counter % 60 === 0) {
                 this._flood.next(new Flood(this._matrix, this._gameObjects).flood())
-                this._globalCrops.next(this._matrix.countCrops());
             }
-        }, 500);
+        }, 1000);
     }
 
+    private countCrops(): Map<CropKey, number[]> {
+
+        let crops: Map<CropKey, number[]> = new Map<CropKey, number[]>();
+
+        this._matrix.content.forEach(outer => {
+            outer.forEach(inner => {
+                if (inner.fieldType === FieldType.SILO) {
+                    const silo: Silo = inner as Silo;
+                    const cropKey = silo.cropKey;
+                    const current = silo.current;
+                    const max = silo.max;
+
+
+                    const existing = crops.get(cropKey);
+                    if (!existing) {
+                        crops.set(cropKey, [current, max]);
+                    } else {
+                        existing[0] += current;
+                        existing[1] += max;
+                        crops.set(cropKey, existing);
+                    }
+                }
+            })
+        })
+
+        return crops;
+    }
 
     public changeField(field: Field) {
 
@@ -112,7 +138,7 @@ export class TickMachine {
         return this._flood;
     }
 
-    get globalCrops(): Subject<Map<CropKey, number>> {
+    get globalCrops(): Subject<Map<CropKey, number[]>> {
         return this._globalCrops;
     }
 

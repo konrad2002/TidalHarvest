@@ -84,9 +84,9 @@ export class Matrix {
         return content;
     }
 
-    public countCrops(): Map<CropKey, number> {
+    public countCrops(): Map<CropKey, number[]> {
 
-        let crops: Map<CropKey, number> = new Map<CropKey, number>();
+        let crops: Map<CropKey, number[]> = new Map<CropKey, number[]>();
 
         this.content.forEach(outer => {
             outer.forEach(inner => {
@@ -94,13 +94,16 @@ export class Matrix {
                     const silo: Silo = inner as Silo;
                     const cropKey = silo.cropKey;
                     const current = silo.current;
+                    const max = silo.max;
 
 
                     const existing = crops.get(cropKey);
                     if (!existing) {
-                        crops.set(cropKey, current);
+                        crops.set(cropKey, [current, max]);
                     } else {
-                        crops.set(cropKey, current + existing);
+                        existing[0] += current;
+                        existing[1] += max;
+                        crops.set(cropKey, existing);
                     }
                 }
             })

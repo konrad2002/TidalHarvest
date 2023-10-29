@@ -16,6 +16,10 @@ export class FarmlandComponent implements GridTile{
     getBackgroundImage(): string {
         let str = "farmland_";
 
+        if (this.field.crop) {
+            str += this.field.crop.cropKey.toLowerCase() + "_";
+        }
+
         switch (this.field.state) {
             case FarmlandState.PLANTING:
                 str += "planting_";
