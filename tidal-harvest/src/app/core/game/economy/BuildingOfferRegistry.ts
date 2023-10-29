@@ -1,5 +1,5 @@
 import {BuildingOffer} from "../../model/economy/BuildingOffer";
-import {Subject} from "rxjs";
+import {ReplaySubject, Subject} from "rxjs";
 import {BuildingOfferBuilder} from "../../model/economy/BuildingOfferBuilder";
 import {FieldType} from "../../model/field/FieldType";
 import {CropKey} from "../../model/field/farm/crop/CropKey";
@@ -20,7 +20,7 @@ export class BuildingOfferRegistry {
     private wheatAndCornIteration = 0;
     private allIteration = 0;
 
-    private readonly _subject: Subject<BuildingOffer[]> = new Subject();
+    private readonly _subject: ReplaySubject<BuildingOffer[]> = new ReplaySubject();
 
     private readonly _cropUnlockedRegistry: CropUnlockedRegistry;
 
@@ -56,12 +56,61 @@ export class BuildingOfferRegistry {
         if (this._cropUnlockedRegistry.isUnlocked(CropKey.CORN) &&
             !this._cropUnlockedRegistry.isUnlocked(CropKey.MELON)) {
 
+            if (this.wheatAndCornIteration === 0) {
+                nextOffer.push(
+                    new BuildingOfferBuilder(FieldType.SILO)
+                        .addCost(CropKey.WHEAT, 1000)
+                        .build()
+                )
+            } else {
+
+                nextOffer.push(
+                    new BuildingOfferBuilder(FieldType.SILO)
+                        .addCost(CropKey.WHEAT, (this.wheatAndCornIteration + this.wheatOnlyIteration) * 100)
+                        .addCost(CropKey.CORN, this.wheatAndCornIteration * 150)
+                        .build()
+                )
+
+            }
+
+            nextOffer.push(
+                new BuildingOfferBuilder(FieldType.FARMER)
+                    .addCost(CropKey.CORN, 125 * (this.wheatAndCornIteration + 1))
+                    .build()
+            )
+
             this.wheatAndCornIteration++;
+
 
         }
 
         if (this._cropUnlockedRegistry.isUnlocked(CropKey.CORN) &&
             this._cropUnlockedRegistry.isUnlocked(CropKey.MELON)) {
+
+            if (this.wheatAndCornIteration === 0) {
+                nextOffer.push(
+                    new BuildingOfferBuilder(FieldType.SILO)
+                        .addCost(CropKey.WHEAT, 1000)
+                        .addCost(CropKey.CORN, 1000)
+                        .build()
+                )
+            } else {
+
+                nextOffer.push(
+                    new BuildingOfferBuilder(FieldType.SILO)
+                        .addCost(CropKey.WHEAT, (this.allIteration + this.wheatAndCornIteration + this.wheatOnlyIteration) * 100)
+                        .addCost(CropKey.CORN, this.allIteration * 150)
+                        .build()
+                )
+
+            }
+
+            nextOffer.push(
+                new BuildingOfferBuilder(FieldType.FARMER)
+                    .addCost(CropKey.CORN, 150 * (this.allIteration + 1))
+                    .build()
+            )
+
 
             this.allIteration++;
 

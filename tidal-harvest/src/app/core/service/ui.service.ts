@@ -5,6 +5,7 @@ import {FieldType} from "../model/field/FieldType";
 import {Game} from "../game/Game";
 import {CropKey} from "../model/field/farm/crop/CropKey";
 import {CropOffer} from "../model/economy/CropOffer";
+import {BuildingOffer} from "../model/economy/BuildingOffer";
 
 @Injectable({
     providedIn: 'root'
@@ -61,12 +62,20 @@ export class UiService {
         this.game.unlockCrop(offer);
     }
 
+    public buyBuilding(offer: BuildingOffer) {
+        this.game.buyBuilding(offer);
+    }
+
     public cropUnlockOffers(): CropOffer[] {
         return this.game.getCropUnlockOffers();
     }
 
     public unlockedCrops(): Observable<CropKey[]> {
         return this.game.cropUnlockedRegistry.subject;
+    }
+
+    public buildingOffers(): Observable<BuildingOffer[]> {
+        return this.game.getBuildingOffers();
     }
 
 

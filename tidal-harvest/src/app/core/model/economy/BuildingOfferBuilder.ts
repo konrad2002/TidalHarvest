@@ -1,6 +1,5 @@
 import {CropAmount} from "./CropAmount";
 import {CropKey} from "../field/farm/crop/CropKey";
-import {CropOffer} from "./CropOffer";
 import {Price} from "./Price";
 import {FieldType} from "../field/FieldType";
 import {BuildingOffer} from "./BuildingOffer";

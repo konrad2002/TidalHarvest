@@ -17,18 +17,22 @@ import {Price} from "../model/economy/Price";
 import {CropUnlockedRegistry} from "./economy/CropUnlockedRegistry";
 import {CropPricePayer} from "./economy/CropPricePayer";
 import {CropOfferRegistry} from "./economy/CropOfferRegistry";
+import {BuildingOfferRegistry} from "./economy/BuildingOfferRegistry";
+import {BuildingOffer} from "../model/economy/BuildingOffer";
 
 export class Game {
 
     private readonly _matrix: Matrix;
     private readonly _tickMachine: TickMachine;
     private readonly _cropUnlockedRegistry: CropUnlockedRegistry;
+    private readonly _buildingOfferRegistry: BuildingOfferRegistry;
 
     constructor() {
         this._matrix = new Matrix(50, 50);
         this._tickMachine = new TickMachine(this._matrix);
         this._cropUnlockedRegistry = new CropUnlockedRegistry();
         this._cropUnlockedRegistry.unlock(CropKey.WHEAT);
+        this._buildingOfferRegistry = new BuildingOfferRegistry(this.cropUnlockedRegistry);
     }
 
     public place(fieldType: FieldType, x: number, y: number) {
@@ -112,6 +116,11 @@ export class Game {
         this._cropUnlockedRegistry.unlock(offer.crop);
     }
 
+    buyBuilding(offer: BuildingOffer) {
+        this.pay(offer.price);
+        this._buildingOfferRegistry.generateNewOfferSet();
+    }
+
     private pay(price: Price) {
         const cropPricePayer = new CropPricePayer();
         cropPricePayer.pay(price, this._matrix);
@@ -123,6 +132,10 @@ export class Game {
 
     public getCropUnlockOffers(): CropOffer[] {
         return new CropOfferRegistry().offers;
+    }
+
+    public getBuildingOffers(): Observable<BuildingOffer[]> {
+        return this._buildingOfferRegistry.subject;
     }
 
 

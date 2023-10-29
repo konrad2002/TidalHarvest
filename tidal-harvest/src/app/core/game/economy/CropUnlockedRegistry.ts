@@ -1,5 +1,5 @@
 import {CropKey} from "../../model/field/farm/crop/CropKey";
-import {Subject} from "rxjs";
+import {ReplaySubject, Subject} from "rxjs";
 
 export class CropUnlockedRegistry {
     get subject(): Subject<CropKey[]> {
@@ -7,7 +7,7 @@ export class CropUnlockedRegistry {
     }
 
     private readonly _unlocked: CropKey[] = [];
-    private readonly _subject: Subject<CropKey[]> = new Subject<CropKey[]>();
+    private readonly _subject: ReplaySubject<CropKey[]> = new ReplaySubject<CropKey[]>();
 
     public isUnlocked(crop: CropKey): boolean {
         for (let cropKey of this._unlocked) {
