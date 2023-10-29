@@ -7,7 +7,7 @@ import {CropUnlockedRegistry} from "./CropUnlockedRegistry";
 
 export class BuildingOfferRegistry {
 
-    private readonly _offer: BuildingOffer[] = [
+    private _offer: BuildingOffer[] = [
         new BuildingOfferBuilder(FieldType.FARMER)
             .addCost(CropKey.WHEAT, 0)
             .build(),
@@ -38,6 +38,17 @@ export class BuildingOfferRegistry {
 
             this.wheatOnlyIteration++;
 
+            nextOffer.push(
+                new BuildingOfferBuilder(FieldType.FARMER)
+                    .addCost(CropKey.WHEAT, 50 * this.wheatOnlyIteration)
+                    .build()
+            );
+
+            nextOffer.push(
+                new BuildingOfferBuilder(FieldType.SILO)
+                    .addCost(CropKey.WHEAT, 200 * this.wheatOnlyIteration)
+                    .build()
+            )
 
 
         }
@@ -56,6 +67,7 @@ export class BuildingOfferRegistry {
 
         }
 
+        this._offer = nextOffer;
 
         this.subject.next(this._offer);
     }

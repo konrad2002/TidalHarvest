@@ -65,5 +65,9 @@ export class UiService {
         return this.game.getCropUnlockOffers();
     }
 
+    public unlockedCrops(): Observable<CropKey[]> {
+        return this.game.cropUnlockedRegistry.subject;
+    }
+
 
 }

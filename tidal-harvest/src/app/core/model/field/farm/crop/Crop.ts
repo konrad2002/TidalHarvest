@@ -5,10 +5,10 @@ export class Crop {
 
     public static readonly WHEAT = new Crop(CropKey.WHEAT,
         15, 40, 10);
-    public static readonly BARLEY = new Crop(CropKey.MELON,
+    public static readonly MELON = new Crop(CropKey.MELON,
         20, 150, 10);
 
-    public static readonly CACTUS = new Crop(CropKey.CORN,
+    public static readonly CORN = new Crop(CropKey.CORN,
         10, 15, 5);
 
 
@@ -17,9 +17,9 @@ export class Crop {
             case CropKey.WHEAT:
                 return Crop.WHEAT;
             case CropKey.MELON:
-                return Crop.BARLEY;
+                return Crop.MELON;
             case CropKey.CORN:
-                return Crop.CACTUS;
+                return Crop.CORN;
         }
     }
 
