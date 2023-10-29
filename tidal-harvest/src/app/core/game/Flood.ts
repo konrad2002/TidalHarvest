@@ -4,8 +4,8 @@ import {FieldType} from "../model/field/FieldType";
 import {Silo} from "../model/field/farm/Silo";
 import {Farmer} from "../model/field/farm/Farmer";
 import {Farmland} from "../model/field/farm/Farmland";
-import {GameObject} from "./GameObject";
-import {FarmerGameObject} from "./FarmerGameObject";
+import {GameObject} from "./game_object/GameObject";
+import {FarmerGameObject} from "./game_object/FarmerGameObject";
 
 export class Flood {
 

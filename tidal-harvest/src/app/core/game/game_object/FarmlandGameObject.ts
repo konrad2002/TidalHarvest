@@ -1,7 +1,7 @@
 import {GameObject} from "./GameObject";
-import {Matrix} from "../model/Matrix";
-import {Farmland} from "../model/field/farm/Farmland";
-import {FarmlandState} from "../model/field/farm/FarmlandState";
+import {Matrix} from "../../model/Matrix";
+import {Farmland} from "../../model/field/farm/Farmland";
+import {FarmlandState} from "../../model/field/farm/FarmlandState";
 import {tick} from "@angular/core/testing";
 
 export class FarmlandGameObject implements GameObject {

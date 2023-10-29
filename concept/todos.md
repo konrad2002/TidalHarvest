@@ -16,8 +16,8 @@
 
 - [x] Silo (silo typen)
 - [x] Silo bestände akkumuliert
-- [ ] Farmer abhängig von Silo
-- [ ] crops collectable
+- [x] Farmer abhängig von Silo
+- [x] crops collectable
 - [ ] Farmer Crop Select edge cases
 - [x] flood
 - [ ] crop types freischaltbar machen
@@ -43,13 +43,13 @@ solider Zwischenstand:
 - Crop freischalten
 - Objekte kaufen (bauen)
 - Gebäude zerstören (Farmland setzen)
-- Crop sammeln bei Farmer
+- ~~Crop sammeln bei Farmer~~
 
 # DOD
 
 ## Flut
 
-- zerstört Pflanze
+- ~~zerstört Pflanze~~
 - ~~bewässert Felder (+ 1.5)~~
 - ~~Silo-Bestände random reduzieren~~
 - ~~Farmer verliert auch aus Inventar~~
