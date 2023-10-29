@@ -4,8 +4,11 @@ import {Farmland} from "../model/field/farm/Farmland";
 import {Silo} from "../model/field/farm/Silo";
 import {Field} from "../model/field/Field";
 import {Farmer} from "../model/field/farm/Farmer";
+import {SiloSelector} from "./SiloSelector";
 
 export class CropCollector {
+
+    private readonly siloSelector = new SiloSelector();
 
     public collect(x: number, y: number, matrix: Matrix) {
 
@@ -42,15 +45,10 @@ export class CropCollector {
 
     private findAllReachableSilos(x: number, y: number, matrix: Matrix): Silo[] {
         const result: Silo[] = [];
-        for (let i = 0; i < matrix.x; i++) {
-            for (let j = 0; j < matrix.y; j++) {
-                const field: Field = matrix.content[i][j];
-                if (field.fieldType === FieldType.SILO) {
-                    const silo: Silo = field as Silo;
-                    if (silo.inDistance(x, y)) result.push(silo);
-                }
-            }
-        }
+        this.siloSelector.findAllSilos(matrix)
+            .forEach(value => {
+                if (value.inDistance(x, y)) result.push(value);
+            })
 
         return result;
 

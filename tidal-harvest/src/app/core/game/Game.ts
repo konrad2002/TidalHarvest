@@ -12,15 +12,23 @@ import {Silo} from "../model/field/farm/Silo";
 import {CropKey} from "../model/field/farm/crop/CropKey";
 import {Crop} from "../model/field/farm/crop/Crop";
 import {CropCollector} from "./CropCollector";
+import {CropOffer} from "../model/economy/CropOffer";
+import {Price} from "../model/economy/Price";
+import {CropUnlockedRegistry} from "./CropUnlockedRegistry";
+import {CropPricePayer} from "./CropPricePayer";
 
 export class Game {
 
     private readonly _matrix: Matrix;
     private readonly _tickMachine: TickMachine;
+    private readonly _cropUnlockedRegistry: CropUnlockedRegistry;
+
 
     constructor() {
         this._matrix = new Matrix(50, 50);
         this._tickMachine = new TickMachine(this._matrix);
+        this._cropUnlockedRegistry = new CropUnlockedRegistry();
+        this._cropUnlockedRegistry.unlock(CropKey.WHEAT);
     }
 
     public place(fieldType: FieldType, x: number, y: number) {
@@ -98,4 +106,20 @@ export class Game {
         this._tickMachine.tick.next(this._matrix);
         this._tickMachine.globalCrops.next(this._matrix.countCrops())
     }
+
+    unlockCrop(offer: CropOffer) {
+        this.pay(offer.price);
+        this._cropUnlockedRegistry.unlock(offer.crop);
+    }
+
+    private pay(price: Price) {
+        const cropPricePayer = new CropPricePayer();
+        cropPricePayer.pay(price, this._matrix);
+    }
+
+    get cropUnlockedRegistry(): CropUnlockedRegistry {
+        return this._cropUnlockedRegistry;
+    }
+
+
 }

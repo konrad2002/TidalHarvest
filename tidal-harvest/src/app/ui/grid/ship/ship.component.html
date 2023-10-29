@@ -1,4 +1,12 @@
 <img src="assets/ship.png" alt="ship" (click)="showShop = true">
 <th-big-popup [popupTitle]="'Shop'" *ngIf="showShop" (close)="showShop = false">
     <p>Ganz toller Shop Content!!</p>
+    <div class="shop-list">
+
+        <div class="shop-entry" *ngFor="let ck of cropTypes">
+            <th-crop-icon [crop]="ck"></th-crop-icon>
+            <span class="entry-title">{{ck}}</span>
+        </div>
+
+    </div>
 </th-big-popup>

@@ -13,6 +13,7 @@ import { SiloPopupComponent } from './popup/field-popup/silo-popup/silo-popup.co
 import { BigPopupComponent } from './popup/big-popup/big-popup.component';
 import { ProgressComponent } from './progress/progress.component';
 import { CropIconComponent } from './icon/crop-icon/crop-icon.component';
+import { BuyButtonComponent } from './button/buy-button/buy-button.component';
 
 
 
@@ -28,7 +29,8 @@ import { CropIconComponent } from './icon/crop-icon/crop-icon.component';
         SiloPopupComponent,
         BigPopupComponent,
         ProgressComponent,
-        CropIconComponent
+        CropIconComponent,
+        BuyButtonComponent
 
     ],
     exports: [
@@ -36,7 +38,8 @@ import { CropIconComponent } from './icon/crop-icon/crop-icon.component';
         ButtonComponent,
         BigPopupComponent,
         ProgressComponent,
-        CropIconComponent
+        CropIconComponent,
+        BuyButtonComponent
     ],
     imports: [
         CommonModule,

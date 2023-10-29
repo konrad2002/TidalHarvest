@@ -1,4 +1,4 @@
-import {Matrix} from "../model/Matrix";
+import {Matrix} from "../../model/Matrix";
 
 export interface GameObject {
 
