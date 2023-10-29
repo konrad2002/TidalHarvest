@@ -13,6 +13,9 @@ export class BuildingOfferRegistry {
             .build(),
         new BuildingOfferBuilder(FieldType.SILO)
             .addCost(CropKey.WHEAT, 0)
+            .build(),
+        new BuildingOfferBuilder(FieldType.WATER_CHANNEL)
+            .addCost(CropKey.CORN, 100)
             .build()
     ]
 
