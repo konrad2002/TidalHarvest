@@ -14,15 +14,15 @@ import {Crop} from "../model/field/farm/crop/Crop";
 import {CropCollector} from "./CropCollector";
 import {CropOffer} from "../model/economy/CropOffer";
 import {Price} from "../model/economy/Price";
-import {CropUnlockedRegistry} from "./CropUnlockedRegistry";
-import {CropPricePayer} from "./CropPricePayer";
+import {CropUnlockedRegistry} from "./economy/CropUnlockedRegistry";
+import {CropPricePayer} from "./economy/CropPricePayer";
+import {CropOfferRegistry} from "./economy/CropOfferRegistry";
 
 export class Game {
 
     private readonly _matrix: Matrix;
     private readonly _tickMachine: TickMachine;
     private readonly _cropUnlockedRegistry: CropUnlockedRegistry;
-
 
     constructor() {
         this._matrix = new Matrix(50, 50);
@@ -119,6 +119,10 @@ export class Game {
 
     get cropUnlockedRegistry(): CropUnlockedRegistry {
         return this._cropUnlockedRegistry;
+    }
+
+    public getCropUnlockOffers(): CropOffer[] {
+        return new CropOfferRegistry().offers;
     }
 
 

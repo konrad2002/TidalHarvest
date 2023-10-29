@@ -4,11 +4,13 @@ import {CropKey} from "./CropKey";
 export class Crop {
 
     public static readonly WHEAT = new Crop(CropKey.WHEAT,
-        20, 80, 15);
+        15, 40, 10);
     public static readonly BARLEY = new Crop(CropKey.MELON,
-        10, 60, 10);
+        20, 150, 10);
+
     public static readonly CACTUS = new Crop(CropKey.CORN,
-        30, 180, 20);
+        10, 15, 5);
+
 
     public static parse(cropKey: CropKey): Crop {
         switch (cropKey) {

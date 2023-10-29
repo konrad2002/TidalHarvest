@@ -1,8 +1,8 @@
-import {Price} from "../model/economy/Price";
-import {Matrix} from "../model/Matrix";
-import {SiloSelector} from "./SiloSelector";
-import {CropKey} from "../model/field/farm/crop/CropKey";
-import {Silo} from "../model/field/farm/Silo";
+import {Price} from "../../model/economy/Price";
+import {Matrix} from "../../model/Matrix";
+import {SiloSelector} from "../SiloSelector";
+import {CropKey} from "../../model/field/farm/crop/CropKey";
+import {Silo} from "../../model/field/farm/Silo";
 
 export class CropPricePayer {
 

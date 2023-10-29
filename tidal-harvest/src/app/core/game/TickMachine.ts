@@ -8,12 +8,12 @@ import {Farmland} from "../model/field/farm/Farmland";
 import {FarmerGameObject} from "./game_object/FarmerGameObject";
 import {Farmer} from "../model/field/farm/Farmer";
 import {WaterChannel} from "../model/field/water/WaterChannel";
-import {WaterInflowCalculator} from "./WaterInflowCalculator";
+import {WaterInflowCalculator} from "./water/WaterInflowCalculator";
 import {WaterEmitter} from "../model/field/water/WaterEmitter";
 import {CropKey} from "../model/field/farm/crop/CropKey";
 import {Crop} from "../model/field/farm/crop/Crop";
 import {Silo} from "../model/field/farm/Silo";
-import {Flood} from "./Flood";
+import {Flood} from "./water/Flood";
 
 export class TickMachine {
 

@@ -7,7 +7,7 @@ import {CropKey} from "../model/field/farm/crop/CropKey";
 import {CropOffer} from "../model/economy/CropOffer";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UiService {
 
@@ -53,12 +53,16 @@ export class UiService {
         this.game.collectCrops(x, y);
     }
 
-    public cropCount(): Observable<Map<CropKey, number[]>>{
+    public cropCount(): Observable<Map<CropKey, number[]>> {
         return this.game.cropCount();
     }
 
-    public unlockCrop(offer: CropOffer){
+    public unlockCrop(offer: CropOffer) {
         this.game.unlockCrop(offer);
+    }
+
+    public cropUnlockOffers(): CropOffer[] {
+        return this.game.getCropUnlockOffers();
     }
 
 

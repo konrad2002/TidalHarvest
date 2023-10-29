@@ -3,7 +3,7 @@ import {FieldType} from "../FieldType";
 import {Matrix} from "../../Matrix";
 import {WaterEmitter} from "./WaterEmitter";
 import {WaterSource} from "./WaterSource";
-import {WaterInflowCalculator} from "../../../game/WaterInflowCalculator";
+import {WaterInflowCalculator} from "../../../game/water/WaterInflowCalculator";
 
 export class WaterChannel extends Field implements WaterEmitter {
 

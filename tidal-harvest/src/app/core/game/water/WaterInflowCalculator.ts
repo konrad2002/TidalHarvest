@@ -1,7 +1,7 @@
-import {Matrix} from "../model/Matrix";
-import {FieldType} from "../model/field/FieldType";
-import {Farmland} from "../model/field/farm/Farmland";
-import {WaterEmitter} from "../model/field/water/WaterEmitter";
+import {Matrix} from "../../model/Matrix";
+import {FieldType} from "../../model/field/FieldType";
+import {Farmland} from "../../model/field/farm/Farmland";
+import {WaterEmitter} from "../../model/field/water/WaterEmitter";
 
 export class WaterInflowCalculator {
 

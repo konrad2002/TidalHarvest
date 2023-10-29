@@ -1,4 +1,4 @@
-import {CropKey} from "../model/field/farm/crop/CropKey";
+import {CropKey} from "../../model/field/farm/crop/CropKey";
 import {Subject} from "rxjs";
 
 export class CropUnlockedRegistry {
