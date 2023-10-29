@@ -4,7 +4,9 @@
     <span *ngIf="field.currentFarmland">Arbeitet auf: ({{field.currentFarmland.x}} | {{field.currentFarmland.y}})</span>
     <form [formGroup]="cropForm">
         <select formControlName="cropType">
-            <option *ngFor="let cropType of cropTypes" [value]="cropType">{{cropType}}</option>
+            <ng-container *ngFor="let cropType of cropTypes">
+                <option *ngIf="unlockedCrops.includes(cropType)" [value]="cropType">{{cropType}}</option>
+            </ng-container>
         </select>
         <th-button (buttonClick)="selectCropType()">Auswählen</th-button>
     </form>

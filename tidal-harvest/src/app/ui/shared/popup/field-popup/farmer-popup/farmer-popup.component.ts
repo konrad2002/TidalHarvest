@@ -4,6 +4,7 @@ import {Farmer} from "../../../../../core/model/field/farm/Farmer";
 import {cropTypes} from "./crop-types.constant";
 import {UiService} from "../../../../../core/service/ui.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {CropKey} from "../../../../../core/model/field/farm/crop/CropKey";
 
 @Component({
   selector: 'app-farmer-popup',
@@ -14,6 +15,7 @@ export class FarmerPopupComponent implements FieldPopup{
     @Input() field!: Farmer;
 
     cropForm: FormGroup;
+    unlockedCrops: CropKey[] = [];
 
     constructor(
         private service: UiService,
@@ -22,6 +24,7 @@ export class FarmerPopupComponent implements FieldPopup{
         this.cropForm = this.fb.group( {
             cropType: []
         })
+        this.service.unlockedCrops().subscribe(data => this.unlockedCrops = data);
     }
 
     getTitle(): string {
