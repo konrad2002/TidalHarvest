@@ -1,15 +1,21 @@
 
 <div class="header">
-    <th-button [buttonType]="placing === FieldType.FARMER ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMER)">{{placing === FieldType.FARMER ? 'abbrechen' : 'Farmer setzen'}}</th-button>
-    <th-button [buttonType]="placing === FieldType.FARMLAND ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMLAND)">{{placing === FieldType.FARMLAND ? 'abbrechen' : 'Acker setzen'}}</th-button>
-    <th-button [buttonType]="placing === FieldType.ROCK ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.ROCK)">{{placing === FieldType.ROCK ? 'abbrechen' : 'Stein setzen'}}</th-button>
-    <th-button [buttonType]="placing === FieldType.WATER_CHANNEL ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.WATER_CHANNEL)">{{placing === FieldType.WATER_CHANNEL ? 'abbrechen' : 'Graben setzen'}}</th-button>
-    <th-button [buttonType]="placing === FieldType.SILO ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO)">{{placing === FieldType.SILO ? 'abbrechen' : 'Silo setzen'}}</th-button>
-    <hr>
     <th-button [buttonType]="'normal'" (buttonClick)="triggerFlood()">Flut auslösen</th-button>
+    <th-button [buttonType]="placeMode ? 'fail' : 'normal'" (buttonClick)="togglePlaceMode()">{{placeMode ? 'beenden' : 'Baumodus'}}</th-button>
+
 </div>
 
 <div class="footer">
+    <div class="place-mode" *ngIf="placeMode">
+        <th-button [buttonType]="placing?.fieldType === FieldType.FARMER ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMER)">{{placing?.fieldType === FieldType.FARMER ? 'abbrechen' : 'Farmer setzen'}}</th-button>
+        <th-button [buttonType]="placing?.fieldType === FieldType.FARMLAND ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMLAND)">{{placing?.fieldType === FieldType.FARMLAND ? 'abbrechen' : 'Acker setzen'}}</th-button>
+        <th-button [buttonType]="placing?.fieldType === FieldType.ROCK ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.ROCK)">{{placing?.fieldType === FieldType.ROCK ? 'abbrechen' : 'Stein setzen'}}</th-button>
+        <th-button [buttonType]="placing?.fieldType === FieldType.WATER_CHANNEL ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.WATER_CHANNEL)">{{placing?.fieldType === FieldType.WATER_CHANNEL ? 'abbrechen' : 'Graben setzen'}}</th-button>
+
+        <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.WHEAT ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.WHEAT)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.WHEAT ? 'abbrechen' : 'Weizen Silo'}}</th-button>
+        <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.BARLEY ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.BARLEY)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.BARLEY ? 'abbrechen' : 'Hirse Silo'}}</th-button>
+
+    </div>
     &copy; Carmen, Entjic (V) und Konrad
 </div>
 

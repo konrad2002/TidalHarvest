@@ -48,7 +48,7 @@ export class TickMachine {
             });
             this._tick.next(this._matrix);
             this._globalCrops.next(this.countCrops()); // probably calls #countCrops way too often (no time to fix)
-            if (counter % 10 === 0) {
+            if (counter % 60 === 0) {
                 this._flood.next(new Flood(this._matrix, this._gameObjects).flood())
             }
         }, 1000);

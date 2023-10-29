@@ -3,6 +3,7 @@ import {Matrix} from "../../core/model/Matrix";
 import {Coordinates} from "../../core/model/Coordinates";
 import {FieldType} from "../../core/model/field/FieldType";
 import {UiService} from "../../core/service/ui.service";
+import {PlacingModel} from "../core/model/placing.model";
 
 @Component({
   selector: 'th-grid',
@@ -11,7 +12,7 @@ import {UiService} from "../../core/service/ui.service";
 })
 export class GridComponent {
     @Input() matrix!: Matrix
-    @Input() placing?: FieldType;
+    @Input() placing?: PlacingModel;
     @Output() fieldClick: EventEmitter<Coordinates> = new EventEmitter<Coordinates>();
 
     floodMatrix?: boolean[][];

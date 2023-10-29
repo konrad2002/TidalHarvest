@@ -32,6 +32,10 @@ export class UiService {
         this.game.place(type, x, y);
     }
 
+    public placeWithCropType(field: FieldType, crop: CropKey, x: number, y: number) {
+        this.game.placeWithCropType(field, crop, x, y);
+    }
+
     public selectCropType(type: CropKey, x: number, y: number) {
         this.game.selectCrop(type, x, y);
     }

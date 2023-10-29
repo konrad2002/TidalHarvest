@@ -3,6 +3,8 @@ import {UiService} from "../core/service/ui.service";
 import {Matrix} from "../core/model/Matrix";
 import {Coordinates} from "../core/model/Coordinates";
 import {FieldType} from "../core/model/field/FieldType";
+import {PlacingModel} from "./core/model/placing.model";
+import {CropKey} from "../core/model/field/farm/crop/CropKey";
 
 @Component({
   selector: 'th-ui',
@@ -13,7 +15,8 @@ export class UiComponent {
 
     matrix?: Matrix;
 
-    placing?: FieldType;
+    placing?: PlacingModel;
+    placeMode: boolean = false;
 
     constructor(
         private service: UiService
@@ -26,15 +29,23 @@ export class UiComponent {
     onFieldClick($event: Coordinates) {
         if (this.placing !== undefined) {
             console.log("placing: " + this.placing + "on: " + $event.x + ";" + $event.y);
-            this.service.place(this.placing, $event.x, $event.y);
+            if (this.placing.crop) {
+                this.service.placeWithCropType(this.placing.fieldType, this.placing.crop, $event.x, $event.y)
+            } else {
+                this.service.place(this.placing.fieldType, $event.x, $event.y);
+            }
         }
     }
 
-    setPlacing(type: FieldType) {
-        if (this.placing == type) {
+    setPlacing(type: FieldType, crop?: CropKey) {
+        if (this.placing && this.placing.fieldType === type && this.placing.crop === crop) {
             this.placing = undefined;
-        } else {
-            this.placing = type;
+            return;
+        }
+
+        this.placing = {
+            fieldType: type,
+            crop: crop
         }
     }
 
@@ -42,5 +53,12 @@ export class UiComponent {
 
     triggerFlood() {
         this.service.triggerFlood();
+    }
+
+    protected readonly CropKey = CropKey;
+
+    togglePlaceMode() {
+        this.placeMode = !this.placeMode;
+        this.placing = undefined;
     }
 }

@@ -5,6 +5,7 @@ import {GridTile} from "./tile.interface";
 import {TileTypes} from "./tile-types.constant";
 import {FieldType} from "../../../core/model/field/FieldType";
 import {Coordinates} from "../../../core/model/Coordinates";
+import {PlacingModel} from "../../core/model/placing.model";
 
 @Component({
   selector: 'th-grid-tile',
@@ -13,7 +14,7 @@ import {Coordinates} from "../../../core/model/Coordinates";
 })
 export class TileComponent implements OnInit, OnChanges {
     @Input() field!: Field
-    @Input() placing?: FieldType;
+    @Input() placing?: PlacingModel;
 
     @Output() tileClick: EventEmitter<Coordinates> = new EventEmitter<Coordinates>();
 
@@ -43,7 +44,7 @@ export class TileComponent implements OnInit, OnChanges {
     }
 
     isPlaceableOn(): boolean {
-        return this.field.fieldType != this.placing;
+        return this.field.fieldType != this.placing?.fieldType;
     }
 
     isClickable(): boolean {
