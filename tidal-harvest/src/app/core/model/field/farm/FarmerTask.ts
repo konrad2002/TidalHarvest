@@ -1,5 +1,5 @@
 export enum FarmerTask {
-    NONE,
+    IDLE,
     PLANTING,
     HARVESTING,
     REPAIRING

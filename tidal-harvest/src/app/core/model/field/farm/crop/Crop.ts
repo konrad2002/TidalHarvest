@@ -10,6 +10,17 @@ export class Crop {
     public static readonly CACTUS = new Crop(CropKey.CACTUS,
         30, 180, 20);
 
+    public static parse(cropKey: CropKey): Crop {
+        switch (cropKey) {
+            case CropKey.WHEAT:
+                return Crop.WHEAT;
+            case CropKey.BARLEY:
+                return Crop.BARLEY;
+            case CropKey.CACTUS:
+                return Crop.CACTUS;
+        }
+    }
+
 
     private readonly _cropKey: CropKey;
     private readonly _requiredPlantTicks: number;

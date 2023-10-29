@@ -10,11 +10,18 @@ import {Farmer} from "../model/field/farm/Farmer";
 import {WaterChannel} from "../model/field/water/WaterChannel";
 import {WaterInflowCalculator} from "./WaterInflowCalculator";
 import {WaterEmitter} from "../model/field/water/WaterEmitter";
+import {CropKey} from "../model/field/farm/crop/CropKey";
+import {Crop} from "../model/field/farm/crop/Crop";
+import {Silo} from "../model/field/farm/Silo";
+import {Flood} from "./Flood";
+import {CropAmount} from "../model/economy/CropAmount";
 
 export class TickMachine {
 
     private readonly _matrix: Matrix;
     private _tick: Subject<Matrix> = new Subject<Matrix>();
+    private _flood: Subject<boolean[][]> = new Subject<boolean[][]>();
+    private _globalCrops: Subject<Map<CropKey, number>> = new Subject<Map<CropKey, number>>();
 
     private _gameObjects: GameObject[][] = [];
 
@@ -41,7 +48,36 @@ export class TickMachine {
                 });
             });
             this._tick.next(this._matrix);
-        }, 500);
+            this._globalCrops.next(this.countCrops()); // probably calls #countCrops way too often (no time to fix)
+            if (counter % 60 === 0) {
+                this._flood.next(new Flood(this._matrix, this._gameObjects).flood())
+            }
+        }, 1000);
+    }
+
+    private countCrops(): Map<CropKey, number> {
+
+        let crops: Map<CropKey, number> = new Map<CropKey, number>();
+
+        this._matrix.content.forEach(outer => {
+            outer.forEach(inner => {
+                if (inner.fieldType === FieldType.SILO) {
+                    const silo: Silo = inner as Silo;
+                    const cropKey = silo.cropKey;
+                    const current = silo.current;
+
+
+                    const existing = crops.get(cropKey);
+                    if (!existing) {
+                        crops.set(cropKey, current);
+                    } else {
+                        crops.set(cropKey, current + existing);
+                    }
+                }
+            })
+        })
+
+        return crops;
     }
 
     public changeField(field: Field) {
@@ -68,8 +104,41 @@ export class TickMachine {
         }
     }
 
+    public changeCrop(cropKey: CropKey, field: Field) {
+        switch (field.fieldType) {
+            case FieldType.FARMLAND:
+                new Error("crop change not supported for this field")
+                break;
+            case FieldType.FARMER:
+                const farmer: Farmer = field as Farmer;
+                farmer.crop = Crop.parse(cropKey);
+                break;
+            case FieldType.ROCK:
+                new Error("crop change not supported for this field")
+                break;
+            case FieldType.WATER_SOURCE:
+                new Error("crop change not supported for this field")
+                break;
+            case FieldType.WATER_CHANNEL:
+                new Error("crop change not supported for this field")
+                break;
+            case FieldType.SILO:
+                new Error("crop change not supported for this field")
+                break;
+        }
+    }
+
     get tick(): Subject<Matrix> {
         return this._tick;
     }
+
+    get flood(): Subject<boolean[][]> {
+        return this._flood;
+    }
+
+    get globalCrops(): Subject<Map<CropKey, number>> {
+        return this._globalCrops;
+    }
+
 
 }

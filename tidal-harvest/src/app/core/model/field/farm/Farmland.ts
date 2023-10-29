@@ -49,6 +49,13 @@ export class Farmland extends Field {
         }
     }
 
+    public resetField() {
+        this._state = FarmlandState.EMPTY;
+        this.progress = 0;
+        this.crop = undefined;
+        console.log("resetting farmland " + this.x + " " + this.y)
+    }
+
     public applyWaterRules(): void {
 
         const waterChange = this.humidity

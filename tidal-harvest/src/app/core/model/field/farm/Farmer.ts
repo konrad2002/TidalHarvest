@@ -10,14 +10,15 @@ export class Farmer extends Field {
     private _storageCapacity: number = 100;
     private _crops: number = 0;
     private _radius: number = 1;
-    private _task: FarmerTask = FarmerTask.NONE;
+    private _task: FarmerTask = FarmerTask.IDLE;
     private _blocked: boolean = false;
 
-    private _crop: Crop = Crop.BARLEY;
+    private _crop: Crop;
 
 
-    public constructor(x: number, y: number) {
+    public constructor(x: number, y: number, crop: Crop) {
         super(FieldType.FARMER, x, y);
+        this._crop = crop;
     }
 
 

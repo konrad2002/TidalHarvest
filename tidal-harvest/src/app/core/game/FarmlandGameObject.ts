@@ -31,6 +31,8 @@ export class FarmlandGameObject implements GameObject {
                 if (this._farmland.crop === undefined) throw new Error();
                 if (this._farmland.progress >= this._farmland.crop
                     .requiredTicks(this._farmland.state)) {
+                    this._farmland.fertility = Math.max(1, this._farmland.fertility - 0.5);
+                    console.log("reduced fertility, now " + this._farmland.fertility)
                     this._farmland.nextState();
                 }
                 return true;

@@ -24,12 +24,12 @@ export class FarmerGameObject implements GameObject {
         const currentFarmland = this._farmer.currentFarmland;
 
         switch (this._farmer.task) {
-            case FarmerTask.NONE:
+            case FarmerTask.IDLE:
                 // console.log("finding next task for farmer at " + this._farmer.x + " " + this._farmer.y)
                 const task = this.findNextTask(this.shuffle(
                     this.findRelevantFields(matrix)));
                 // console.log("new task " + task.toString());
-                if (task === FarmerTask.NONE) return false;
+                if (task === FarmerTask.IDLE) return false;
                 return this.tick(matrix, tick);
             case FarmerTask.HARVESTING:
                 if (currentFarmland?.state !== FarmlandState.HARVESTING) {
@@ -50,6 +50,18 @@ export class FarmerGameObject implements GameObject {
                     this.inactivateFarmer();
                     return this.tick(matrix, tick);
                 }
+
+                if (!currentFarmland.crop?.cropKey) {
+                    currentFarmland.crop = this._farmer.crop;
+                }
+
+                // console.log(currentFarmland.crop?.cropKey)
+                // console.log(this._farmer.crop.cropKey)
+
+                if (currentFarmland.crop?.cropKey !== this._farmer.crop.cropKey) {
+                    this.inactivateFarmer();
+                    return this.tick(matrix, tick);
+                }
                 this.executeTask(currentFarmland);
                 return true;
 
@@ -60,8 +72,8 @@ export class FarmerGameObject implements GameObject {
 
     }
 
-    private inactivateFarmer() {
-        this._farmer.task = FarmerTask.NONE;
+    public inactivateFarmer() {
+        this._farmer.task = FarmerTask.IDLE;
         this._farmer.clearCurrentFarmland();
     }
 
@@ -113,10 +125,11 @@ export class FarmerGameObject implements GameObject {
         }
         for (let farmland of farmlands) {
             if (farmland.state === FarmlandState.PLANTING) {
+                if (farmland.crop && farmland.crop.cropKey
+                    !== this._farmer.crop.cropKey) continue;
                 this._farmer.task = FarmerTask.PLANTING;
                 this._farmer.currentFarmland = farmland;
                 return FarmerTask.PLANTING;
-
             }
         }
         for (let farmland of farmlands) {
@@ -126,7 +139,7 @@ export class FarmerGameObject implements GameObject {
                 return FarmerTask.PLANTING;
             }
         }
-        return FarmerTask.NONE;
+        return FarmerTask.IDLE;
     }
 
     private findRelevantFields(matrix: Matrix): Farmland[] {

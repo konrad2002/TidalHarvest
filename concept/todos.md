@@ -14,12 +14,12 @@
 
 ## Backend
 
-- [ ] Silo (silo typen)
-- [ ] Silo bestände akkumuliert
+- [x] Silo (silo typen)
+- [x] Silo bestände akkumuliert
 - [ ] Farmer abhängig von Silo
 - [ ] crops collectable
 - [ ] Farmer Crop Select edge cases
-- [ ] flood
+- [x] flood
 - [ ] crop types freischaltbar machen
 - [ ] Preise für Gebäude
 
@@ -50,9 +50,9 @@ solider Zwischenstand:
 ## Flut
 
 - zerstört Pflanze
-- bewässert Felder (+ 1.5)
-- Silo-Bestände random reduzieren
-- Farmer verliert auch aus Inventar
+- ~~bewässert Felder (+ 1.5)~~
+- ~~Silo-Bestände random reduzieren~~
+- ~~Farmer verliert auch aus Inventar~~
 
 ## Farmer
 

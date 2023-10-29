@@ -21,6 +21,6 @@ export class UiService {
     }
 
     public selectCropType(type: CropKey, x: number, y: number) {
-        console.log(type);
+        this.game.selectCrop(type, x, y);
     }
 }
