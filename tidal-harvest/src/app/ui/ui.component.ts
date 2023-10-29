@@ -23,6 +23,7 @@ export class UiComponent {
 
     placing?: PlacingModel;
     placeMode: boolean = false;
+    cheatMode: boolean = false;
 
     siloCount: Map<CropKey, number[]> = new Map<CropKey, number[]>();
     unlockedCrops: CropKey[] = [];
@@ -78,6 +79,7 @@ export class UiComponent {
             fieldType: type,
             crop: crop
         }
+        if (this.cheatMode) return;
         for (const buildingOffer of this.buildingOffers) {
             if (buildingOffer.type === type) {
                 this.service.buyBuilding(buildingOffer);
@@ -92,5 +94,9 @@ export class UiComponent {
     togglePlaceMode() {
         this.placeMode = !this.placeMode;
         this.placing = undefined;
+    }
+
+    toggleCheatMode() {
+        this.cheatMode = !this.cheatMode;
     }
 }

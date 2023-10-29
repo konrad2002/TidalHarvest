@@ -14,6 +14,8 @@ export class FarmlandComponent implements GridTile{
     @Input() placing?: FieldType;
 
     getBackgroundImage(): string {
+        // if (this.field.humidity == 0) return "farmland_sand";
+
         let str = "farmland_";
 
         if (this.field.crop) {

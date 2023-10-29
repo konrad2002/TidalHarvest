@@ -118,7 +118,7 @@ export class Game {
 
     buyBuilding(offer: BuildingOffer) {
         this.pay(offer.price);
-        this._buildingOfferRegistry.generateNewOfferSet();
+        this._buildingOfferRegistry.generateNewOfferSet(offer.type);
     }
 
     private pay(price: Price) {
