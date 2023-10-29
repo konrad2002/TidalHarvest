@@ -1,12 +1,15 @@
 
 <div class="header">
     <th-buy-button [price]="price" buttonTitle="Freischalten"></th-buy-button>
-    <th-button [active]="false" [buttonType]="'normal'" (buttonClick)="triggerFlood()">Flut auslösen</th-button>
     <th-button [buttonType]="placeMode ? 'fail' : 'normal'" (buttonClick)="togglePlaceMode()">{{placeMode ? 'beenden' : 'Baumodus'}}</th-button>
     <ng-container *ngFor="let crop of siloCount.keys();">
         <th-crop-icon [crop]="crop"></th-crop-icon>
         <th-progress *ngIf="siloCount.get(crop)" [values]="siloCount.get(crop)"></th-progress>
     </ng-container>
+    <div class="unlocked">
+        <span>Freigeschaltete Früchte:</span>
+        <th-crop-icon *ngFor="let crop of unlockedCrops" [crop]="crop"></th-crop-icon>
+    </div>
 </div>
 
 <div class="footer">

@@ -28,3 +28,13 @@ th-grid {
     border-top: 2px solid black;
 }
 
+
+.unlocked {
+    float: right;
+    margin: 6px 10px;
+
+    span, th-crop-icon {
+        vertical-align: middle;
+        margin: 0 4px;
+    }
+}

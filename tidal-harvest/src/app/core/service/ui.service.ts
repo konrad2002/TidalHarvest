@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, ReplaySubject} from "rxjs";
+import {Observable} from "rxjs";
 import {Matrix} from "../model/Matrix";
 import {FieldType} from "../model/field/FieldType";
 import {Game} from "../game/Game";
@@ -13,18 +13,6 @@ import {BuildingOffer} from "../model/economy/BuildingOffer";
 export class UiService {
 
     game: Game = new Game();
-
-    flood: ReplaySubject<boolean[][]> = new ReplaySubject<boolean[][]>();
-    floodMatrix: boolean[][] = [];
-
-    constructor() {
-        for (let i = 0; i < 50; i++) {
-            this.floodMatrix[i] = []
-            for (let j = 0; j < 50; j++) {
-                this.floodMatrix[i][j] = true;
-            }
-        }
-    }
 
     public getMatrix(): Observable<Matrix> {
         return this.game.matrix();
@@ -44,10 +32,6 @@ export class UiService {
 
     public getFloodMatrix(): Observable<boolean[][]> {
         return this.game.flood();
-    }
-
-    public triggerFlood(): void {
-        this.flood.next(this.floodMatrix)
     }
 
     public collectCrops(x: number, y: number) {

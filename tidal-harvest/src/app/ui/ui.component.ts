@@ -24,6 +24,7 @@ export class UiComponent {
     placeMode: boolean = false;
 
     siloCount: Map<CropKey, number[]> = new Map<CropKey, number[]>();
+    unlockedCrops: CropKey[] = [];
 
     constructor(
         private service: UiService
@@ -33,6 +34,9 @@ export class UiComponent {
         });
         this.service.cropCount().subscribe(data => {
             this.siloCount = data;
+        })
+        this.service.unlockedCrops().subscribe(data => {
+            this.unlockedCrops = data;
         })
 
         let ca = new CropAmount(this.CropKey.CORN, 200);
@@ -64,10 +68,6 @@ export class UiComponent {
     }
 
     protected readonly FieldType = FieldType;
-
-    triggerFlood() {
-        this.service.triggerFlood();
-    }
 
     protected readonly CropKey = CropKey;
 

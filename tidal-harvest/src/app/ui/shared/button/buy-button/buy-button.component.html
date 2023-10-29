@@ -1,4 +1,4 @@
-<button class="btn btn-{{buttonType}} btn-{{active ? 'active' : 'inactive'}}" (click)="onButtonClick()">
+<button class="btn btn-{{buttonType}} btn-{{active ? 'active' : 'inactive'}} btn-{{wide ? 'wide' : 'slim'}}" (click)="onButtonClick()">
     <div class="prices">
         <div class="price" *ngFor="let p of price.price">
             <th-crop-icon [crop]="p.cropKey"></th-crop-icon>

@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Price} from "../../../../core/model/economy/Price";
+import {UiService} from "../../../../core/service/ui.service";
+import {CropKey} from "../../../../core/model/field/farm/crop/CropKey";
 
 @Component({
   selector: 'th-buy-button',
@@ -14,7 +16,29 @@ export class BuyButtonComponent {
   @Input() buttonTitle!: string;
   @Input() price!: Price;
 
+  @Input() wide: boolean = false;
+  private crops: Map<CropKey, number[]> = new Map<CropKey, number[]>();
+
+  constructor(
+      private service: UiService
+  ) {
+    this.service.cropCount().subscribe(data => {
+      this.crops = data
+      this.checkAffordable()
+    });
+  }
+
   onButtonClick() {
     this.buttonClick.emit();
+  }
+
+  checkAffordable() {
+    let a = false;
+    console.log("AFF check")
+    for (const p of this.price.price ) {
+      let crop = this.crops.get(p.cropKey);
+      if (crop && crop[0] >= p.amount) a = true;
+    }
+    this.active = a;
   }
 }

@@ -43,7 +43,7 @@ th-grid-tile {
         margin-top: -50px;
         animation-name: cruise;
         animation-duration: 60s; // TODO: change to flood interval
-        animation-delay: 65s; // change to flood interval + 5
+        animation-delay: 0s; // change to flood interval + 5
         animation-timing-function: linear;
         animation-iteration-count: infinite;
     }

@@ -1,11 +1,13 @@
-<img src="assets/ship.png" alt="ship" (click)="showShop = true">
+<img src="assets/ui/ship.png" alt="ship" (click)="showShop = true">
 <th-big-popup [popupTitle]="'Shop'" *ngIf="showShop" (close)="showShop = false">
-    <p>Ganz toller Shop Content!!</p>
     <div class="shop-list">
 
-        <div class="shop-entry" *ngFor="let ck of cropTypes">
-            <th-crop-icon [crop]="ck"></th-crop-icon>
-            <span class="entry-title">{{ck}}</span>
+        <div class="shop-entry" *ngFor="let cropOffer of cropOffers">
+            <ng-container *ngIf="!unlockedCrops.includes(cropOffer.crop)">
+                <th-crop-icon class="entry-icon" [crop]="cropOffer.crop"></th-crop-icon>
+                <span class="entry-title">{{cropOffer.crop}}</span>
+                <th-buy-button [price]="cropOffer.price" (buttonClick)="unlockCrop(cropOffer)"></th-buy-button>
+            </ng-container>
         </div>
 
     </div>

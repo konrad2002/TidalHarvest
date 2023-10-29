@@ -2,15 +2,20 @@
   background-image: url("/assets/ui/btn.png");
   background-size: 100%;
   background-color: transparent;
-  width: 100px;
+  width: 120px;
   border: 0;
   margin: 4px;
   cursor: pointer;
   overflow: hidden;
   color: white;
-  height: 24px;
+  height: 29px;
   font-size: 10px;
   padding: 0;
+
+  &.btn-wide {
+    width: 240px;
+    background-image: url("/assets/ui/btn_wide.png");
+  }
 
   &.btn-inactive {
     filter: grayscale(1);
@@ -27,7 +32,24 @@
 
 }
 
+.price,
+.prices,
+.btn-title {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn-title {
+  margin-left: 6px;
+}
+
 
 th-crop-icon {
   scale: 0.7;
+}
+
+th-crop-icon,
+.amount {
+  vertical-align: middle;
+  display: inline-block;
 }

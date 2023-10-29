@@ -18,3 +18,24 @@ img {
     transform: translateX(-10px);
   }
 }
+
+.shop-list {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.shop-entry {
+  width: 200px;
+  text-align: center;
+}
+
+.entry-title {
+  display: block;
+}
+
+.entry-icon {
+  scale: 3;
+  display: block;
+  margin: 38px 84px 42px;
+}
