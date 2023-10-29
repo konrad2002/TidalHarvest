@@ -1,5 +1,5 @@
 .btn {
-    background-image: url("/assets/ui/btn.png");
+    background-image: url("../../../../assets/ui/btn.png");
     background-size: 100%;
     background-color: transparent;
     width: 100px;
@@ -22,6 +22,6 @@
     }
 
     &.btn-fail {
-        background-image: url("/assets/ui/fail_btn.png");
+        background-image: url("../../../../assets/ui/fail_btn.png");
     }
 }

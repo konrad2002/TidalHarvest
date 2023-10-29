@@ -1,5 +1,5 @@
 .btn {
-  background-image: url("/assets/ui/btn.png");
+  background-image: url("../../../../../assets/ui/btn.png");
   background-size: 100%;
   background-color: transparent;
   width: 120px;
@@ -14,7 +14,7 @@
 
   &.btn-wide {
     width: 240px;
-    background-image: url("/assets/ui/btn_wide.png");
+    background-image: url("../../../../../assets/ui/btn_wide.png");
   }
 
   &.btn-inactive {
@@ -27,7 +27,8 @@
   }
 
   &.btn-fail {
-    background-image: url("/assets/ui/fail_btn.png");
+    filter: hue-rotate(152deg);
+    //background-image: url("/assets/ui/fail_btn.png");
   }
 
 }

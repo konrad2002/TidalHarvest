@@ -15,9 +15,9 @@
     <div class="place-mode" *ngIf="placeMode">
 
 
-        <th-buy-button [price]="buildingPrices.get(FieldType.WATER_CHANNEL)" [buttonType]="placing?.fieldType === FieldType.WATER_CHANNEL ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.WATER_CHANNEL)">{{placing?.fieldType === FieldType.WATER_CHANNEL ? 'abbrechen' : 'Graben setzen'}}</th-buy-button>
+        <th-buy-button [wide]="true" [price]="buildingPrices.get(FieldType.WATER_CHANNEL)" [buttonType]="placing?.fieldType === FieldType.WATER_CHANNEL ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.WATER_CHANNEL)">{{placing?.fieldType === FieldType.WATER_CHANNEL ? 'abbrechen' : 'Graben setzen'}}</th-buy-button>
 
-        <th-buy-button [price]="buildingPrices.get(FieldType.FARMER)" [buttonType]="placing?.fieldType === FieldType.FARMER ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMER)">{{placing?.fieldType === FieldType.FARMER ? 'abbrechen' : 'Farmer setzen'}}</th-buy-button>
+        <th-buy-button [wide]="true" [price]="buildingPrices.get(FieldType.FARMER)" [buttonType]="placing?.fieldType === FieldType.FARMER ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMER)">{{placing?.fieldType === FieldType.FARMER ? 'abbrechen' : 'Farmer setzen'}}</th-buy-button>
 
         <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.WHEAT ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.WHEAT)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.WHEAT ? 'abbrechen' : 'Weizensilo'}}</th-button>
         <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.MELON ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.MELON)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.MELON ? 'abbrechen' : 'Melonensilo'}}</th-button>
@@ -29,7 +29,6 @@
         <th-button [buttonType]="placing?.fieldType === FieldType.ROCK ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.ROCK)">{{placing?.fieldType === FieldType.ROCK ? 'abbrechen' : 'Stein setzen'}}</th-button>
 
     </div>
-    &copy; Carmen, Entjic (V) und Konrad
 </div>
 
 <th-grid

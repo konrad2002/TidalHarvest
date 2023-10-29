@@ -37,7 +37,7 @@ export class BuildingOfferRegistry {
         const nextOffer: BuildingOffer[] = [];
 
         nextOffer.push(new BuildingOfferBuilder(FieldType.WATER_CHANNEL)
-            .addCost(CropKey.CORN, 100)
+            .addCost(CropKey.CORN, 0)
             .build());
 
         if (!this._cropUnlockedRegistry.isUnlocked(CropKey.CORN) &&

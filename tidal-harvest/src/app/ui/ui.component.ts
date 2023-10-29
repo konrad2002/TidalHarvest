@@ -64,6 +64,7 @@ export class UiComponent {
             } else {
                 this.service.place(this.placing.fieldType, $event.x, $event.y);
             }
+            this.placing = undefined;
         }
     }
 
@@ -76,6 +77,11 @@ export class UiComponent {
         this.placing = {
             fieldType: type,
             crop: crop
+        }
+        for (const buildingOffer of this.buildingOffers) {
+            if (buildingOffer.type === type) {
+                this.service.buyBuilding(buildingOffer);
+            }
         }
     }
 
