@@ -82,4 +82,12 @@ export class Game {
         return this._tickMachine.tick;
     }
 
+    public flood(): Observable<boolean[][]>{
+        return this._tickMachine.flood;
+    }
+
+    public cropCount(): Observable<Map<CropKey, number>>{
+        return this._tickMachine.globalCrops;
+    }
+
 }
