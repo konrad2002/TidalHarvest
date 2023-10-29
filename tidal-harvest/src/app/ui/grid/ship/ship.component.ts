@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class ShipComponent {
 
-  onShipClick() {
-    alert("SHOP!!");
-  }
+  showShop: boolean = false;
+
 }

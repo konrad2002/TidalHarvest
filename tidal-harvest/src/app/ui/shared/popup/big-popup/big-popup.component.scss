@@ -1,0 +1,29 @@
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 16;
+  background-color: #0006;
+  width: 100%;
+  height: 100vh;
+}
+
+.popup-container {
+  background-image: url("/assets/ui/popup_big.png");
+  width: 500px;
+  background-size: 100%;
+  height: 284px;
+  margin: 23vh auto;
+  color: black;
+  padding: 10px 40px;
+
+  h1 {
+    text-align: center;
+  }
+}
+
+.close-btn {
+  margin-left: 494px;
+  margin-top: 9px;
+  position: absolute;
+}

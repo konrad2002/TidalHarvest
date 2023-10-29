@@ -10,6 +10,7 @@ import { ButtonComponent } from './button/button.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { WaterSourcePopupComponent } from './popup/field-popup/water-source-popup/water-source-popup.component';
 import { SiloPopupComponent } from './popup/field-popup/silo-popup/silo-popup.component';
+import { BigPopupComponent } from './popup/big-popup/big-popup.component';
 
 
 
@@ -22,12 +23,14 @@ import { SiloPopupComponent } from './popup/field-popup/silo-popup/silo-popup.co
         WaterChannelPopupComponent,
         ButtonComponent,
         WaterSourcePopupComponent,
-        SiloPopupComponent
+        SiloPopupComponent,
+        BigPopupComponent
 
     ],
     exports: [
         FieldPopupComponent,
-        ButtonComponent
+        ButtonComponent,
+        BigPopupComponent
     ],
     imports: [
         CommonModule,

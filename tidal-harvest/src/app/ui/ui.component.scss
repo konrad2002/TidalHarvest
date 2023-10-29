@@ -8,3 +8,19 @@ th-grid {
     display: block;
     margin: 0
 }
+
+.header,
+.footer {
+    position: fixed;
+    background-color: transparent;
+    z-index: 11;
+    width: 100%;
+}
+
+.header {
+    top: 0;
+}
+
+.footer {
+    bottom: 0;
+}

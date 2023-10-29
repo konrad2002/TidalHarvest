@@ -37,11 +37,16 @@ export class UiService {
     }
 
     public getFloodMatrix(): Observable<boolean[][]> {
-        this.flood.next(this.floodMatrix)
-        return this.flood;
+        return this.game.flood();
     }
 
     public triggerFlood(): void {
         this.flood.next(this.floodMatrix)
     }
+
+    public collectCrops(x: number, y: number) {
+        console.log("collect crops at: " + x + ";" + y);
+    }
+
+
 }

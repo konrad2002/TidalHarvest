@@ -14,7 +14,6 @@ import {CropKey} from "../model/field/farm/crop/CropKey";
 import {Crop} from "../model/field/farm/crop/Crop";
 import {Silo} from "../model/field/farm/Silo";
 import {Flood} from "./Flood";
-import {CropAmount} from "../model/economy/CropAmount";
 
 export class TickMachine {
 
@@ -49,7 +48,7 @@ export class TickMachine {
             });
             this._tick.next(this._matrix);
             this._globalCrops.next(this.countCrops()); // probably calls #countCrops way too often (no time to fix)
-            if (counter % 60 === 0) {
+            if (counter % 10 === 0) {
                 this._flood.next(new Flood(this._matrix, this._gameObjects).flood())
             }
         }, 1000);

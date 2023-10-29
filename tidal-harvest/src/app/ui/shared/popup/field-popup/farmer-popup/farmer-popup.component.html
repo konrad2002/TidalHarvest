@@ -6,6 +6,7 @@
         <select formControlName="cropType">
             <option *ngFor="let cropType of cropTypes" [value]="cropType">{{cropType}}</option>
         </select>
-        <th-button (buttonClick)="selectCropType()">Select</th-button>
+        <th-button (buttonClick)="selectCropType()">Auswählen</th-button>
     </form>
+    <th-button (buttonClick)="selectCropType()" [active]="field.crops > 0">Sammeln</th-button>
 </ng-container>

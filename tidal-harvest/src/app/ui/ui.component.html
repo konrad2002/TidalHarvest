@@ -1,10 +1,17 @@
-<th-button [buttonType]="placing === FieldType.FARMER ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMER)">{{placing === FieldType.FARMER ? 'abbrechen' : 'Farmer setzen'}}</th-button>
-<th-button [buttonType]="placing === FieldType.FARMLAND ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMLAND)">{{placing === FieldType.FARMLAND ? 'abbrechen' : 'Acker setzen'}}</th-button>
-<th-button [buttonType]="placing === FieldType.ROCK ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.ROCK)">{{placing === FieldType.ROCK ? 'abbrechen' : 'Stein setzen'}}</th-button>
-<th-button [buttonType]="placing === FieldType.WATER_CHANNEL ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.WATER_CHANNEL)">{{placing === FieldType.WATER_CHANNEL ? 'abbrechen' : 'Graben setzen'}}</th-button>
-<th-button [buttonType]="placing === FieldType.SILO ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO)">{{placing === FieldType.SILO ? 'abbrechen' : 'Silo setzen'}}</th-button>
-<hr>
-<th-button [buttonType]="'normal'" (buttonClick)="triggerFlood()">Flut auslösen</th-button>
+
+<div class="header">
+    <th-button [buttonType]="placing === FieldType.FARMER ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMER)">{{placing === FieldType.FARMER ? 'abbrechen' : 'Farmer setzen'}}</th-button>
+    <th-button [buttonType]="placing === FieldType.FARMLAND ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMLAND)">{{placing === FieldType.FARMLAND ? 'abbrechen' : 'Acker setzen'}}</th-button>
+    <th-button [buttonType]="placing === FieldType.ROCK ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.ROCK)">{{placing === FieldType.ROCK ? 'abbrechen' : 'Stein setzen'}}</th-button>
+    <th-button [buttonType]="placing === FieldType.WATER_CHANNEL ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.WATER_CHANNEL)">{{placing === FieldType.WATER_CHANNEL ? 'abbrechen' : 'Graben setzen'}}</th-button>
+    <th-button [buttonType]="placing === FieldType.SILO ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO)">{{placing === FieldType.SILO ? 'abbrechen' : 'Silo setzen'}}</th-button>
+    <hr>
+    <th-button [buttonType]="'normal'" (buttonClick)="triggerFlood()">Flut auslösen</th-button>
+</div>
+
+<div class="footer">
+    &copy; Carmen, Entjic (V) und Konrad
+</div>
 
 <th-grid
     *ngIf="matrix"

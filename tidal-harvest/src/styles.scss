@@ -7,3 +7,20 @@ body {
   color: #d3d3d3;
   margin: 0;
 }
+
+
+.close-btn {
+  background-image: url("/assets/ui/close_btn.png");
+  background-size: 100%;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.3);
+  }
+}
