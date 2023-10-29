@@ -21,13 +21,13 @@ export class Flood {
         if (field.fieldType === FieldType.SILO) {
             const silo: Silo = field as Silo;
             console.log("silo pre: " + silo.current)
-            silo.current = silo.current * 0.6;
+            silo.current = Math.floor(silo.current * 0.6);
             console.log("silo after: " + silo.current)
         }
         if (field.fieldType === FieldType.FARMER) {
             const farmer: Farmer = field as Farmer;
             console.log("farmer pre: " + farmer.crops)
-            farmer.crops = farmer.crops * 0.2;
+            farmer.crops = Math.floor(farmer.crops * 0.2);
             console.log("farmer after: " + farmer.crops)
 
             console.log("making farmer idle")

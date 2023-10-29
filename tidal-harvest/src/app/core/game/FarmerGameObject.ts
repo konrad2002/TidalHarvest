@@ -51,7 +51,7 @@ export class FarmerGameObject implements GameObject {
                     return this.tick(matrix, tick);
                 }
 
-                if (!currentFarmland.crop?.cropKey) {
+                if (!currentFarmland.crop) {
                     currentFarmland.crop = this._farmer.crop;
                 }
 

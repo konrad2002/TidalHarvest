@@ -33,4 +33,8 @@ export class FarmerPopupComponent implements FieldPopup{
     selectCropType() {
         this.service.selectCropType(this.cropForm.value.cropType, this.field.x, this.field.y);
     }
+
+    collectCropType() {
+        this.service.collectCrops(this.field.x, this.field.y);
+    }
 }

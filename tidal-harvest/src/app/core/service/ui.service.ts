@@ -49,7 +49,7 @@ export class UiService {
     }
 
     public collectCrops(x: number, y: number) {
-        console.log("collect crops at: " + x + ";" + y);
+        this.game.collectCrops(x, y);
     }
 
 

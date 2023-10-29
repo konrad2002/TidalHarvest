@@ -11,6 +11,7 @@ import {WaterSource} from "../model/field/water/WaterSource";
 import {Silo} from "../model/field/farm/Silo";
 import {CropKey} from "../model/field/farm/crop/CropKey";
 import {Crop} from "../model/field/farm/crop/Crop";
+import {CropCollector} from "./CropCollector";
 
 export class Game {
 
@@ -82,12 +83,19 @@ export class Game {
         return this._tickMachine.tick;
     }
 
-    public flood(): Observable<boolean[][]>{
+    public flood(): Observable<boolean[][]> {
         return this._tickMachine.flood;
     }
 
-    public cropCount(): Observable<Map<CropKey, number>>{
+    public cropCount(): Observable<Map<CropKey, number>> {
         return this._tickMachine.globalCrops;
     }
 
+    public collectCrops(x: number, y: number) {
+        const cropCollector: CropCollector = new CropCollector();
+        console.log("Collecting")
+        cropCollector.collect(x, y, this._matrix);
+        this._tickMachine.tick.next(this._matrix);
+        this._tickMachine.globalCrops.next(this._matrix.countCrops())
+    }
 }

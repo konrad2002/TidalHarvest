@@ -3,6 +3,8 @@ import {Farmland} from "./field/farm/Farmland";
 import {Rock} from "./field/rock/Rock";
 import {FieldType} from "./field/FieldType";
 import {WaterSource} from "./field/water/WaterSource";
+import {CropKey} from "./field/farm/crop/CropKey";
+import {Silo} from "./field/farm/Silo";
 
 export class Matrix {
 
@@ -80,6 +82,31 @@ export class Matrix {
         }
 
         return content;
+    }
+
+    public countCrops(): Map<CropKey, number> {
+
+        let crops: Map<CropKey, number> = new Map<CropKey, number>();
+
+        this.content.forEach(outer => {
+            outer.forEach(inner => {
+                if (inner.fieldType === FieldType.SILO) {
+                    const silo: Silo = inner as Silo;
+                    const cropKey = silo.cropKey;
+                    const current = silo.current;
+
+
+                    const existing = crops.get(cropKey);
+                    if (!existing) {
+                        crops.set(cropKey, current);
+                    } else {
+                        crops.set(cropKey, current + existing);
+                    }
+                }
+            })
+        })
+
+        return crops;
     }
 
 

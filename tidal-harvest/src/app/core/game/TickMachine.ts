@@ -47,37 +47,14 @@ export class TickMachine {
                 });
             });
             this._tick.next(this._matrix);
-            this._globalCrops.next(this.countCrops()); // probably calls #countCrops way too often (no time to fix)
-            if (counter % 60 === 0) {
+            this._globalCrops.next(this._matrix.countCrops()); // probably calls #countCrops way too often (no time to fix)
+            if (counter % 120 === 0) {
                 this._flood.next(new Flood(this._matrix, this._gameObjects).flood())
+                this._globalCrops.next(this._matrix.countCrops());
             }
-        }, 1000);
+        }, 500);
     }
 
-    private countCrops(): Map<CropKey, number> {
-
-        let crops: Map<CropKey, number> = new Map<CropKey, number>();
-
-        this._matrix.content.forEach(outer => {
-            outer.forEach(inner => {
-                if (inner.fieldType === FieldType.SILO) {
-                    const silo: Silo = inner as Silo;
-                    const cropKey = silo.cropKey;
-                    const current = silo.current;
-
-
-                    const existing = crops.get(cropKey);
-                    if (!existing) {
-                        crops.set(cropKey, current);
-                    } else {
-                        crops.set(cropKey, current + existing);
-                    }
-                }
-            })
-        })
-
-        return crops;
-    }
 
     public changeField(field: Field) {
 
