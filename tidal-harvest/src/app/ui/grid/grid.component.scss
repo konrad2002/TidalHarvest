@@ -1,22 +1,48 @@
 .row {
     padding: 0;
     margin: 0;
-    display: block;
+    display: flex;
     height: 54px;
-}
-
-.field {
-    display: inline-block;
 }
 
 th-grid-tile {
     height: 54px;
     width: 54px;
     overflow: hidden;
-    display: inline-block;
+    display: block;
     font-size: 10px;
     font-weight: bold;
     padding: 0;
     color: #e3e3e3;
     background-color: #eac168;
+
+    &.flooded {
+        background-color: #0767bf;
+    }
+}
+
+@keyframes cruise {
+    0% {
+        margin-top: -50px;
+    }
+
+    100% {
+        margin-top: 1000px;
+    }
+}
+
+
+
+.ship-container {
+    position: absolute;
+    height: 1000px;
+    z-index: 3;
+
+    th-ship {
+        position: absolute;
+        margin-top: -50px;
+        animation-name: cruise;
+        animation-duration: 60s;
+        animation-timing-function: linear;
+    }
 }

@@ -39,4 +39,8 @@ export class UiComponent {
     }
 
     protected readonly FieldType = FieldType;
+
+    triggerFlood() {
+        this.service.triggerFlood();
+    }
 }
