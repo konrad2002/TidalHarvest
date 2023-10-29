@@ -1,6 +1,5 @@
 
 <div class="header">
-    <th-buy-button [price]="price" buttonTitle="Freischalten"></th-buy-button>
     <th-button [buttonType]="placeMode ? 'fail' : 'normal'" (buttonClick)="togglePlaceMode()">{{placeMode ? 'beenden' : 'Baumodus'}}</th-button>
     <ng-container *ngFor="let crop of siloCount.keys();">
         <th-crop-icon [crop]="crop"></th-crop-icon>
@@ -14,14 +13,20 @@
 
 <div class="footer">
     <div class="place-mode" *ngIf="placeMode">
-        <th-button [buttonType]="placing?.fieldType === FieldType.FARMER ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMER)">{{placing?.fieldType === FieldType.FARMER ? 'abbrechen' : 'Farmer setzen'}}</th-button>
-        <th-button [buttonType]="placing?.fieldType === FieldType.FARMLAND ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMLAND)">{{placing?.fieldType === FieldType.FARMLAND ? 'abbrechen' : 'Acker setzen'}}</th-button>
-        <th-button [buttonType]="placing?.fieldType === FieldType.ROCK ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.ROCK)">{{placing?.fieldType === FieldType.ROCK ? 'abbrechen' : 'Stein setzen'}}</th-button>
-        <th-button [buttonType]="placing?.fieldType === FieldType.WATER_CHANNEL ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.WATER_CHANNEL)">{{placing?.fieldType === FieldType.WATER_CHANNEL ? 'abbrechen' : 'Graben setzen'}}</th-button>
+
+
+        <th-buy-button [price]="buildingPrices.get(FieldType.WATER_CHANNEL)" [buttonType]="placing?.fieldType === FieldType.WATER_CHANNEL ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.WATER_CHANNEL)">{{placing?.fieldType === FieldType.WATER_CHANNEL ? 'abbrechen' : 'Graben setzen'}}</th-buy-button>
+
+        <th-buy-button [price]="buildingPrices.get(FieldType.FARMER)" [buttonType]="placing?.fieldType === FieldType.FARMER ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMER)">{{placing?.fieldType === FieldType.FARMER ? 'abbrechen' : 'Farmer setzen'}}</th-buy-button>
 
         <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.WHEAT ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.WHEAT)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.WHEAT ? 'abbrechen' : 'Weizensilo'}}</th-button>
         <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.MELON ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.MELON)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.MELON ? 'abbrechen' : 'Melonensilo'}}</th-button>
         <th-button [buttonType]="placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.CORN ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.SILO, CropKey.CORN)">{{placing?.fieldType === FieldType.SILO && placing?.crop === CropKey.CORN ? 'abbrechen' : 'Maissilo'}}</th-button>
+
+
+
+        <th-button [buttonType]="placing?.fieldType === FieldType.FARMLAND ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.FARMLAND)">{{placing?.fieldType === FieldType.FARMLAND ? 'abbrechen' : 'Acker setzen'}}</th-button>
+        <th-button [buttonType]="placing?.fieldType === FieldType.ROCK ? 'fail' : 'normal'" (buttonClick)="setPlacing(FieldType.ROCK)">{{placing?.fieldType === FieldType.ROCK ? 'abbrechen' : 'Stein setzen'}}</th-button>
 
     </div>
     &copy; Carmen, Entjic (V) und Konrad

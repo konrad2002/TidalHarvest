@@ -1,9 +1,9 @@
 <button class="btn btn-{{buttonType}} btn-{{active ? 'active' : 'inactive'}} btn-{{wide ? 'wide' : 'slim'}}" (click)="onButtonClick()">
-    <div class="prices">
+    <div class="prices" *ngIf="price">
         <div class="price" *ngFor="let p of price.price">
             <th-crop-icon [crop]="p.cropKey"></th-crop-icon>
             <span class="amount">{{p.amount}}</span>
         </div>
     </div>
-    <span class="btn-title">{{buttonTitle}}</span>
+    <span class="btn-title">{{buttonTitle}} <ng-content></ng-content></span>
 </button>

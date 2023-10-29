@@ -7,6 +7,7 @@ import {PlacingModel} from "./core/model/placing.model";
 import {CropKey} from "../core/model/field/farm/crop/CropKey";
 import {Price} from "../core/model/economy/Price";
 import {CropAmount} from "../core/model/economy/CropAmount";
+import {BuildingOffer} from "../core/model/economy/BuildingOffer";
 
 @Component({
   selector: 'th-ui',
@@ -25,6 +26,10 @@ export class UiComponent {
 
     siloCount: Map<CropKey, number[]> = new Map<CropKey, number[]>();
     unlockedCrops: CropKey[] = [];
+    buildingOffers: BuildingOffer[] = [];
+
+    buildingPrices: Map<FieldType, Price> = new Map<FieldType, Price>();
+
 
     constructor(
         private service: UiService
@@ -38,6 +43,13 @@ export class UiComponent {
         this.service.unlockedCrops().subscribe(data => {
             this.unlockedCrops = data;
         })
+        this.service.buildingOffers().subscribe(data => {
+            this.buildingOffers = data
+            this.buildingPrices = new Map<FieldType, Price>();
+            for (const buildingOffer of this.buildingOffers) {
+                this.buildingPrices.set(buildingOffer.type, buildingOffer.price);
+            }
+        });
 
         let ca = new CropAmount(this.CropKey.CORN, 200);
         let ca2 = new CropAmount(this.CropKey.WHEAT, 500);

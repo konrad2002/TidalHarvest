@@ -14,7 +14,7 @@ export class BuyButtonComponent {
   @Output() buttonClick: EventEmitter<any> = new EventEmitter<any>();
 
   @Input() buttonTitle!: string;
-  @Input() price!: Price;
+  @Input() price?: Price;
 
   @Input() wide: boolean = false;
   private crops: Map<CropKey, number[]> = new Map<CropKey, number[]>();
@@ -33,12 +33,23 @@ export class BuyButtonComponent {
   }
 
   checkAffordable() {
+    if (!this.price || !this.price.price) {
+      this.active = false;
+      return;
+    }
     let a = false;
-    console.log("AFF check")
     for (const p of this.price.price ) {
       let crop = this.crops.get(p.cropKey);
       if (crop && crop[0] >= p.amount) a = true;
     }
+
+    let allAff = true;
+    for (const p of this.price.price ) {
+      if (p.amount != 0) allAff = false;
+    }
+
+    if (allAff) a = true;
+
     this.active = a;
   }
 }
