@@ -33,6 +33,10 @@ export class BuildingOfferRegistry {
 
         const nextOffer: BuildingOffer[] = [];
 
+        nextOffer.push(new BuildingOfferBuilder(FieldType.WATER_CHANNEL)
+            .addCost(CropKey.CORN, 100)
+            .build());
+
         if (!this._cropUnlockedRegistry.isUnlocked(CropKey.CORN) &&
             !this._cropUnlockedRegistry.isUnlocked(CropKey.MELON)) {
 
