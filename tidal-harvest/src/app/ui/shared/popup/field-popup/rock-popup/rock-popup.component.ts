@@ -49,7 +49,8 @@ export class RockPopupComponent implements FieldPopup{
         "Sebastian",
         "Cornelia",
         "Cassandra",
-        "Angelina"
+        "Angelina",
+        "Sandy"
     ];
 
     getTitle(): string {

@@ -8,6 +8,8 @@ import { RockPopupComponent } from './popup/field-popup/rock-popup/rock-popup.co
 import { WaterChannelPopupComponent } from './popup/field-popup/water-channel-popup/water-channel-popup.component';
 import { ButtonComponent } from './button/button.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { WaterSourcePopupComponent } from './popup/field-popup/water-source-popup/water-source-popup.component';
+import { SiloPopupComponent } from './popup/field-popup/silo-popup/silo-popup.component';
 
 
 
@@ -18,7 +20,9 @@ import {ReactiveFormsModule} from "@angular/forms";
         FarmerPopupComponent,
         RockPopupComponent,
         WaterChannelPopupComponent,
-        ButtonComponent
+        ButtonComponent,
+        WaterSourcePopupComponent,
+        SiloPopupComponent
 
     ],
     exports: [

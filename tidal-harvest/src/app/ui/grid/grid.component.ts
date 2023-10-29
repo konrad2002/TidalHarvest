@@ -16,4 +16,6 @@ export class GridComponent {
     onFieldClick(c: Coordinates) {
         this.fieldClick.emit(c);
     }
+
+    protected readonly FieldType = FieldType;
 }

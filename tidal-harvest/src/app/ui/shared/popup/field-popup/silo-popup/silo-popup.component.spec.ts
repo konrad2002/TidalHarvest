@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WaterComponent } from './water.component';
+import { SiloPopupComponent } from './silo-popup.component';
 
-describe('WaterComponent', () => {
-  let component: WaterComponent;
-  let fixture: ComponentFixture<WaterComponent>;
+describe('SiloPopupComponent', () => {
+  let component: SiloPopupComponent;
+  let fixture: ComponentFixture<SiloPopupComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [WaterComponent]
+      declarations: [SiloPopupComponent]
     });
-    fixture = TestBed.createComponent(WaterComponent);
+    fixture = TestBed.createComponent(SiloPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

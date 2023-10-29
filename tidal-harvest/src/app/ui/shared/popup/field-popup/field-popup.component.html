@@ -1,4 +1,4 @@
-<div class="popup field-popup {{field.fieldType == FieldType.FARMER ? 'popup-big' : 'popup-small'}}">
+<div class="popup field-popup {{field.fieldType === FieldType.FARMER || field.fieldType === FieldType.SILO ? 'popup-big' : 'popup-small'}}">
     <button class="close-btn" (click)="onClose()"></button>
     <h1>
         <b>{{getFieldName()}}</b>
