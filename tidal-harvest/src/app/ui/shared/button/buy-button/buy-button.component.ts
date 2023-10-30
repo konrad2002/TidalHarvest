@@ -10,7 +10,7 @@ import {CropKey} from "../../../../core/model/field/farm/crop/CropKey";
 })
 export class BuyButtonComponent {
   @Input() buttonType: "normal" | "success" | "fail" = "normal";
-  @Input() active: boolean = true;
+  @Input() active: boolean = false;
   @Output() buttonClick: EventEmitter<any> = new EventEmitter<any>();
 
   @Input() buttonTitle!: string;

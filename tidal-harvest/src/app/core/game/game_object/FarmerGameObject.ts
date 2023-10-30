@@ -14,6 +14,10 @@ export class FarmerGameObject implements GameObject {
     }
 
     public tick(matrix: Matrix, tick: number): boolean {
+        if (this._farmer.blocked && this._farmer.crops < this._farmer.storageCapacity) {
+            this._farmer.blocked = false;
+        }
+
         if (this._invalidated || this._farmer.blocked) return false;
 
         if (this._farmer.crops >= this._farmer.storageCapacity) {
