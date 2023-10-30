@@ -4,11 +4,11 @@
 
 - [ ] background sand
 - [ ] background water (flood)
-- [ ] crop types (seeds + plant)
-  - [ ] water melon
-  - [ ] wheat
-  - [ ] barley
-- [ ] Schiff
+- [x] crop types (seeds + plant)
+  - [x] water melon
+  - [x] wheat
+  - [x] barley
+- [x] Schiff
 - [ ] money
 - [ ] progress bar (klein und groß)
 
@@ -18,10 +18,10 @@
 - [x] Silo bestände akkumuliert
 - [x] Farmer abhängig von Silo
 - [x] crops collectable
-- [ ] Farmer Crop Select edge cases
+- [x] Farmer Crop Select edge cases
 - [x] flood
-- [ ] crop types freischaltbar machen
-- [ ] Preise für Gebäude
+- [x] crop types freischaltbar machen
+- [x] Preise für Gebäude
 
 solider Zwischenstand:
 
@@ -49,10 +49,10 @@ solider Zwischenstand:
 
 ## Flut
 
-- ~~zerstört Pflanze~~
-- ~~bewässert Felder (+ 1.5)~~
-- ~~Silo-Bestände random reduzieren~~
-- ~~Farmer verliert auch aus Inventar~~
+- zerstört Pflanze
+- bewässert Felder (+ 1.5)
+- Silo-Bestände random reduzieren
+- Farmer verliert auch aus Inventar
 
 ## Farmer
 
