@@ -13,7 +13,7 @@ export class CropOfferRegistry {
             .addCost(CropKey.WHEAT, 2000)
             .build(),
         new CropOfferBuilder(CropKey.CORN)
-            .addCost(CropKey.WHEAT, 1)
+            .addCost(CropKey.WHEAT, 750)
             .build()
     ];
 
