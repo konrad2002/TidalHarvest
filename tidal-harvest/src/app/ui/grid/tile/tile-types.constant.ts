@@ -6,7 +6,7 @@ import {WaterChannelComponent} from "./water-channel/water-channel.component";
 import {SiloComponent} from "./silo/silo.component";
 import {WaterSourceComponent} from "./water-source/water-source.component";
 
-export const TileTypes = new Map<FieldType, any>();
+export const TileTypes: Map<FieldType, any> = new Map<FieldType, any>();
 TileTypes.set(FieldType.FARMLAND, FarmlandComponent)
 TileTypes.set(FieldType.FARMER, FarmerComponent)
 TileTypes.set(FieldType.ROCK, RockComponent)

@@ -4,11 +4,12 @@ import {Coordinates} from "../../core/model/Coordinates";
 import {FieldType} from "../../core/model/field/FieldType";
 import {UiService} from "../../core/service/ui.service";
 import {PlacingModel} from "../core/model/placing.model";
+import {MatrixDto} from "../../core/model/dto/MatrixDto";
 
 @Component({
-  selector: 'th-grid',
-  templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.scss']
+    selector: 'th-grid',
+    templateUrl: './grid.component.html',
+    styleUrls: ['./grid.component.scss']
 })
 export class GridComponent {
     @Input() matrix!: Matrix

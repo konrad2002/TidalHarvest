@@ -1,65 +1,111 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {map, Observable, Subject} from "rxjs";
 import {Matrix} from "../model/Matrix";
 import {FieldType} from "../model/field/FieldType";
-import {Game} from "../game/Game";
 import {CropKey} from "../model/field/farm/crop/CropKey";
 import {CropOffer} from "../model/economy/CropOffer";
 import {BuildingOffer} from "../model/economy/BuildingOffer";
+import {RxStompService} from "./rx-stomp.service";
+import {GameDto} from "../model/dto/GameDto";
+import {MatrixDto} from "../model/dto/MatrixDto";
 
 @Injectable({
     providedIn: 'root'
 })
 export class UiService {
 
-    game: Game = new Game();
+    private readonly matrix: Subject<Matrix> = new Subject<Matrix>();
+
+    constructor(private rxStompService: RxStompService) {
+
+        rxStompService.watch("/topic/game/created/")
+            .pipe(map(data => {
+                const parse = JSON.parse(data.body);
+                return parse as GameDto;
+            }))
+            .subscribe(value => {
+                console.log(value);
+                console.log(value.id);
+                console.log(value.timeSinceStart);
+                this.matrix.next(new Matrix(value.board));
+            });
+
+        this.rxStompService.watch("topic/game/board/")
+            .pipe(map(value => {
+                const parse = JSON.parse(value.body);
+                return parse as MatrixDto;
+            })).subscribe(value => this.matrix.next(new Matrix(value)));
+
+        // kickstart game cycle
+        this.publish("/game/admin/create/", "");
+
+    }
+
 
     public getMatrix(): Observable<Matrix> {
-        return this.game.matrix();
+        return this.matrix;
     }
 
-    public place(type: FieldType, x: number, y: number) {
-        this.game.place(type, x, y);
+    public place(fieldType: FieldType, x: number, y: number) {
+        const body = JSON.stringify({fieldType, x, y});
+        this.publish("/game/action/place/", body);
+        // this.game.place(fieldType, x, y);
     }
 
-    public placeWithCropType(field: FieldType, crop: CropKey, x: number, y: number) {
-        this.game.placeWithCropType(field, crop, x, y);
+    public placeWithCropType(fieldType: FieldType, crop: CropKey, x: number, y: number) {
+        const body = JSON.stringify({fieldType, crop, x, y});
+        this.publish("/game/action/place/crop/", body);
+        // this.game.placeWithCropType(fieldType, crop, x, y);
     }
 
     public selectCropType(type: CropKey, x: number, y: number) {
-        this.game.selectCrop(type, x, y);
+        const body = JSON.stringify({type, x, y});
+        this.publish("/game/action/select/crop/", body);
+        // this.game.selectCrop(type, x, y);
     }
 
     public getFloodMatrix(): Observable<boolean[][]> {
-        return this.game.flood();
+        return new Observable();
     }
 
     public collectCrops(x: number, y: number) {
-        this.game.collectCrops(x, y);
+
+        // this.game.collectCrops(x, y);
     }
 
     public cropCount(): Observable<Map<CropKey, number[]>> {
-        return this.game.cropCount();
+        return new Observable();
     }
 
     public unlockCrop(offer: CropOffer) {
-        this.game.unlockCrop(offer);
+        // this.game.unlockCrop(offer);
     }
 
     public buyBuilding(offer: BuildingOffer) {
-        this.game.buyBuilding(offer);
+        // this.game.buyBuilding(offer);
     }
 
     public cropUnlockOffers(): CropOffer[] {
-        return this.game.getCropUnlockOffers();
+        // return this.game.getCropUnlockOffers();
+        return new Array<CropOffer>();
     }
 
     public unlockedCrops(): Observable<CropKey[]> {
-        return this.game.cropUnlockedRegistry.subject;
+        // return this.game.cropUnlockedRegistry.subject;
+        return new Observable();
     }
 
     public buildingOffers(): Observable<BuildingOffer[]> {
-        return this.game.getBuildingOffers();
+        // return this.game.getBuildingOffers();
+        return new Observable();
+    }
+
+    private publish(destination: string, body: string) {
+        console.log("publishing to " + destination + " body: " + body);
+        this.rxStompService.publish({
+            destination: destination,
+            body: body
+        });
     }
 
 

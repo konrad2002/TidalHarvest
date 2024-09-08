@@ -1,8 +1,6 @@
 import {Matrix} from "../model/Matrix";
 import {FieldType} from "../model/field/FieldType";
-import {Farmland} from "../model/field/farm/Farmland";
 import {Silo} from "../model/field/farm/Silo";
-import {Field} from "../model/field/Field";
 import {Farmer} from "../model/field/farm/Farmer";
 import {SiloSelector} from "./SiloSelector";
 

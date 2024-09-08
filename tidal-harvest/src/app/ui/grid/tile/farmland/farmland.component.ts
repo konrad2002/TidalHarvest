@@ -5,11 +5,11 @@ import {Farmland} from "../../../../core/model/field/farm/Farmland";
 import {FarmlandState} from "../../../../core/model/field/farm/FarmlandState";
 
 @Component({
-  selector: 'th-farmland',
-  templateUrl: './farmland.component.html',
-  styleUrls: ['./farmland.component.scss']
+    selector: 'th-farmland',
+    templateUrl: './farmland.component.html',
+    styleUrls: ['./farmland.component.scss']
 })
-export class FarmlandComponent implements GridTile{
+export class FarmlandComponent implements GridTile {
     @Input() field!: Farmland;
     @Input() placing?: FieldType;
 

@@ -8,6 +8,7 @@ import {CropKey} from "../core/model/field/farm/crop/CropKey";
 import {Price} from "../core/model/economy/Price";
 import {CropAmount} from "../core/model/economy/CropAmount";
 import {BuildingOffer} from "../core/model/economy/BuildingOffer";
+import {MatrixDto} from "../core/model/dto/MatrixDto";
 
 @Component({
   selector: 'th-ui',

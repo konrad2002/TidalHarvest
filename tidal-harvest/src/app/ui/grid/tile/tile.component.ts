@@ -3,9 +3,9 @@ import {Field} from "../../../core/model/field/Field";
 import {GridTileDirective} from "../../core/directive/grid-tile.directive";
 import {GridTile} from "./tile.interface";
 import {TileTypes} from "./tile-types.constant";
-import {FieldType} from "../../../core/model/field/FieldType";
 import {Coordinates} from "../../../core/model/Coordinates";
 import {PlacingModel} from "../../core/model/placing.model";
+import {FieldType} from "../../../core/model/field/FieldType";
 
 @Component({
   selector: 'th-grid-tile',
@@ -32,7 +32,24 @@ export class TileComponent implements OnInit, OnChanges {
     updateView() {
         const viewRef = this.thGridTile.viewContainerRef;
         viewRef.clear();
-        const componentRef = viewRef.createComponent<GridTile>(TileTypes.get(this.field.fieldType));
+        let key = this.field.fieldType;
+
+        console.log("========")
+
+        const newFieldType = FieldType.FARMLAND;
+
+        console.log(newFieldType);
+        console.log(typeof newFieldType);
+
+        console.log("--------")
+
+        console.log(key as FieldType);
+        console.log(typeof key);
+        console.log(FieldType);
+        console.log(TileTypes);
+        const componentType = TileTypes.get(key);
+        console.log(componentType)
+        const componentRef = viewRef.createComponent<GridTile>(componentType);
         componentRef.instance.field = this.field;
     }
 

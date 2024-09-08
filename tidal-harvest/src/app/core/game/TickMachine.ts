@@ -13,7 +13,6 @@ import {WaterEmitter} from "../model/field/water/WaterEmitter";
 import {CropKey} from "../model/field/farm/crop/CropKey";
 import {Crop} from "../model/field/farm/crop/Crop";
 import {Silo} from "../model/field/farm/Silo";
-import {Flood} from "./water/Flood";
 
 export class TickMachine {
 
@@ -27,31 +26,6 @@ export class TickMachine {
 
     public constructor(matrix: Matrix) {
         this._matrix = matrix;
-
-        for (let i = 0; i < matrix.content.length; i++) {
-            this._gameObjects[i] = [];
-        }
-
-        this._matrix.content.forEach(outer => {
-            outer.forEach(inner => {
-                this.changeField(inner);
-            });
-        });
-
-        let counter = 0;
-        setInterval(() => {
-            counter++;
-            this._gameObjects.forEach(outer => {
-                outer.forEach(inner => {
-                    inner.tick(this._matrix, counter);
-                });
-            });
-            this._tick.next(this._matrix);
-            this._globalCrops.next(this.countCrops()); // probably calls #countCrops way too often (no time to fix)
-            if (counter % 60 === 5) {
-                this._flood.next(new Flood(this._matrix, this._gameObjects).flood())
-            }
-        }, 1000);
     }
 
     private countCrops(): Map<CropKey, number[]> {
