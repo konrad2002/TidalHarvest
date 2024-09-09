@@ -8,6 +8,7 @@ import {BuildingOffer} from "../model/economy/BuildingOffer";
 import {RxStompService} from "./rx-stomp.service";
 import {GameDto} from "../model/dto/GameDto";
 import {MatrixDto} from "../model/dto/MatrixDto";
+import {BuildingType} from "../model/field/BuildingType";
 
 @Injectable({
     providedIn: 'root'
@@ -46,14 +47,15 @@ export class UiService {
         return this.matrix;
     }
 
-    public place(fieldType: FieldType, x: number, y: number) {
-        const body = JSON.stringify({fieldType, x, y});
+    public place(buildingType: BuildingType, x: number, y: number) {
+        console.log(buildingType, x, y);
+        const body = JSON.stringify({buildingType, x, y});
         this.publish("/game/action/place/", body);
         // this.game.place(fieldType, x, y);
     }
 
-    public placeWithCropType(fieldType: FieldType, crop: CropKey, x: number, y: number) {
-        const body = JSON.stringify({fieldType, crop, x, y});
+    public placeWithCropType(buildingType: BuildingType, crop: CropKey, x: number, y: number) {
+        const body = JSON.stringify({buildingType, crop, x, y});
         this.publish("/game/action/place/crop/", body);
         // this.game.placeWithCropType(fieldType, crop, x, y);
     }

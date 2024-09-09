@@ -22,10 +22,7 @@ export class Matrix {
     }
 
     private parseField(dto: TileDto): Field {
-        console.log("-------")
-        console.log(dto);
         const fieldType: FieldType = dto.fieldType;
-        console.log(fieldType);
         return new Field(fieldType, dto.x, dto.y);
     }
 

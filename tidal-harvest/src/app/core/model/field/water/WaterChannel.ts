@@ -12,7 +12,7 @@ export class WaterChannel extends Field implements WaterEmitter {
     private readonly _waterInflowCalculator = new WaterInflowCalculator();
 
     public constructor(x: number, y: number) {
-        super(FieldType.WATER_CHANNEL, x, y);
+        super(FieldType.WATER_SOURCE, x, y);
     }
 
     get powered(): boolean {
@@ -67,7 +67,7 @@ export class WaterChannel extends Field implements WaterEmitter {
                  j <= Math.min(this.y + this.range, matrix.y); j++) {
                 console.log("checking if " + i + " " + j + " is watered now")
                 const field = matrix.content[i][j];
-                if (field?.fieldType === FieldType.WATER_CHANNEL) {
+                if (field?.fieldType === FieldType.WATER_SOURCE) {
                     const waterChannel = field as WaterChannel;
                     if (!waterChannel.powered) {
                         waterChannel.updatePowered(matrix);

@@ -4,6 +4,7 @@ import {WaterSource} from "../../../../core/model/field/water/WaterSource";
 import {UiService} from "../../../../core/service/ui.service";
 import {Matrix} from "../../../../core/model/Matrix";
 import {FieldType} from "../../../../core/model/field/FieldType";
+import {BuildingType} from "../../../../core/model/field/BuildingType";
 
 @Component({
   selector: 'app-water-source',
@@ -21,7 +22,7 @@ export class WaterSourceComponent implements GridTile{
   }
 
   getBackgroundImage(): string {
-    if (this.matrix && this.matrix.content[this.field.x][1].fieldType === FieldType.WATER_CHANNEL) return "river_channel";
+    if (this.matrix && this.matrix.content[this.field.x][1].buildingType === BuildingType.WATER_CHANNEL) return "river_channel";
     return "river_" + ((Math.round((Math.sin(this.field.x * 1.2) + 1)) % 3) + 1);
   }
 

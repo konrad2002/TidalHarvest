@@ -11,7 +11,7 @@ export class Silo extends Field {
     private _radius: number = 3;
 
     public constructor(x: number, y: number, cropKey: CropKey) {
-        super(FieldType.SILO, x, y);
+        super(FieldType.FARMLAND, x, y);
         this._cropKey = cropKey;
     }
 

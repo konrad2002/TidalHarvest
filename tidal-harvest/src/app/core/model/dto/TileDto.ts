@@ -1,8 +1,10 @@
+import {FieldType} from "../field/FieldType";
+
 export interface TileDto {
     x: number
     y: number
     flooded: boolean
-    fieldType: number
+    fieldType: FieldType
     humidity: number
     building: any
 }

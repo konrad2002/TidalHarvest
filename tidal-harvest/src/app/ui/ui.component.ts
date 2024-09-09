@@ -9,6 +9,7 @@ import {Price} from "../core/model/economy/Price";
 import {CropAmount} from "../core/model/economy/CropAmount";
 import {BuildingOffer} from "../core/model/economy/BuildingOffer";
 import {MatrixDto} from "../core/model/dto/MatrixDto";
+import {BuildingType} from "../core/model/field/BuildingType";
 
 @Component({
   selector: 'th-ui',
@@ -30,7 +31,7 @@ export class UiComponent {
     unlockedCrops: CropKey[] = [];
     buildingOffers: BuildingOffer[] = [];
 
-    buildingPrices: Map<FieldType, Price> = new Map<FieldType, Price>();
+    buildingPrices: Map<BuildingType, Price> = new Map<BuildingType, Price>();
 
 
     constructor(
@@ -47,7 +48,7 @@ export class UiComponent {
         })
         this.service.buildingOffers().subscribe(data => {
             this.buildingOffers = data
-            this.buildingPrices = new Map<FieldType, Price>();
+            this.buildingPrices = new Map<BuildingType, Price>();
             for (const buildingOffer of this.buildingOffers) {
                 this.buildingPrices.set(buildingOffer.type, buildingOffer.price);
             }
@@ -62,22 +63,22 @@ export class UiComponent {
         if (this.placing !== undefined) {
             console.log("placing: " + this.placing + "on: " + $event.x + ";" + $event.y);
             if (this.placing.crop) {
-                this.service.placeWithCropType(this.placing.fieldType, this.placing.crop, $event.x, $event.y)
+                this.service.placeWithCropType(this.placing.buildingType, this.placing.crop, $event.x, $event.y)
             } else {
-                this.service.place(this.placing.fieldType, $event.x, $event.y);
+                this.service.place(this.placing.buildingType, $event.x, $event.y);
             }
             this.placing = undefined;
         }
     }
 
-    setPlacing(type: FieldType, crop?: CropKey) {
-        if (this.placing && this.placing.fieldType === type && this.placing.crop === crop) {
+    setPlacing(type: BuildingType, crop?: CropKey) {
+        if (this.placing && this.placing.buildingType === type && this.placing.crop === crop) {
             this.placing = undefined;
             return;
         }
 
         this.placing = {
-            fieldType: type,
+            buildingType: type,
             crop: crop
         }
         if (this.cheatMode) return;
@@ -100,4 +101,6 @@ export class UiComponent {
     toggleCheatMode() {
         this.cheatMode = !this.cheatMode;
     }
+
+    protected readonly BuildingType = BuildingType;
 }

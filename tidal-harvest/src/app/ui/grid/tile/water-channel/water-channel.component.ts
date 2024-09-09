@@ -4,11 +4,12 @@ import {WaterChannel} from "../../../../core/model/field/water/WaterChannel";
 import {UiService} from "../../../../core/service/ui.service";
 import {Matrix} from "../../../../core/model/Matrix";
 import {FieldType} from "../../../../core/model/field/FieldType";
+import {BuildingType} from "../../../../core/model/field/BuildingType";
 
 @Component({
-  selector: 'app-water-channel',
-  templateUrl: './water-channel.component.html',
-  styleUrls: ['./water-channel.component.scss']
+    selector: 'app-water-channel',
+    templateUrl: './water-channel.component.html',
+    styleUrls: ['./water-channel.component.scss']
 })
 export class WaterChannelComponent implements GridTile {
     @Input() field!: WaterChannel;
@@ -30,10 +31,10 @@ export class WaterChannelComponent implements GridTile {
 
         let str = "water/water_channel";
 
-        if (x > 0 && this.matrix.content[x-1][y].fieldType === FieldType.WATER_CHANNEL) str += "_top";
-        if (y < this.matrix.y-1 && this.matrix.content[x][y+1].fieldType === FieldType.WATER_CHANNEL) str += "_right";
-        if (x < this.matrix.x-1 && this.matrix.content[x+1][y].fieldType === FieldType.WATER_CHANNEL) str += "_bottom";
-        if (y > 0 && this.matrix.content[x][y-1].fieldType === FieldType.WATER_CHANNEL || y == 1) str += "_left";
+        if (x > 0 && this.matrix.content[x - 1][y].buildingType === BuildingType.WATER_CHANNEL) str += "_top";
+        if (y < this.matrix.y - 1 && this.matrix.content[x][y + 1].buildingType === BuildingType.WATER_CHANNEL) str += "_right";
+        if (x < this.matrix.x - 1 && this.matrix.content[x + 1][y].buildingType === BuildingType.WATER_CHANNEL) str += "_bottom";
+        if (y > 0 && this.matrix.content[x][y - 1].buildingType === BuildingType.WATER_CHANNEL || y == 1) str += "_left";
 
         return str;
     }

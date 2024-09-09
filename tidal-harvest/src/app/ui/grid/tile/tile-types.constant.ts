@@ -6,10 +6,10 @@ import {WaterChannelComponent} from "./water-channel/water-channel.component";
 import {SiloComponent} from "./silo/silo.component";
 import {WaterSourceComponent} from "./water-source/water-source.component";
 
-export const TileTypes: Map<FieldType, any> = new Map<FieldType, any>();
-TileTypes.set(FieldType.FARMLAND, FarmlandComponent)
-TileTypes.set(FieldType.FARMER, FarmerComponent)
-TileTypes.set(FieldType.ROCK, RockComponent)
-TileTypes.set(FieldType.WATER_CHANNEL, WaterChannelComponent)
-TileTypes.set(FieldType.WATER_SOURCE, WaterSourceComponent)
-TileTypes.set(FieldType.SILO, SiloComponent)
+export const TileTypes: Map<string, any> = new Map<string, any>();
+TileTypes.set("FARMLAND", FarmlandComponent)
+TileTypes.set("FARMER", FarmerComponent)
+TileTypes.set("ROCK", RockComponent)
+TileTypes.set("WATER_CHANNEL", WaterChannelComponent)
+TileTypes.set("WATER_SOURCE", WaterSourceComponent)
+TileTypes.set("SILO", SiloComponent)

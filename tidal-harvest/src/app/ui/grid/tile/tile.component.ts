@@ -5,12 +5,11 @@ import {GridTile} from "./tile.interface";
 import {TileTypes} from "./tile-types.constant";
 import {Coordinates} from "../../../core/model/Coordinates";
 import {PlacingModel} from "../../core/model/placing.model";
-import {FieldType} from "../../../core/model/field/FieldType";
 
 @Component({
-  selector: 'th-grid-tile',
-  templateUrl: './tile.component.html',
-  styleUrls: ['./tile.component.scss']
+    selector: 'th-grid-tile',
+    templateUrl: './tile.component.html',
+    styleUrls: ['./tile.component.scss']
 })
 export class TileComponent implements OnInit, OnChanges {
     @Input() field!: Field
@@ -33,22 +32,7 @@ export class TileComponent implements OnInit, OnChanges {
         const viewRef = this.thGridTile.viewContainerRef;
         viewRef.clear();
         let key = this.field.fieldType;
-
-        console.log("========")
-
-        const newFieldType = FieldType.FARMLAND;
-
-        console.log(newFieldType);
-        console.log(typeof newFieldType);
-
-        console.log("--------")
-
-        console.log(key as FieldType);
-        console.log(typeof key);
-        console.log(FieldType);
-        console.log(TileTypes);
-        const componentType = TileTypes.get(key);
-        console.log(componentType)
+        const componentType = TileTypes.get(key.toString());
         const componentRef = viewRef.createComponent<GridTile>(componentType);
         componentRef.instance.field = this.field;
     }
@@ -61,7 +45,7 @@ export class TileComponent implements OnInit, OnChanges {
     }
 
     isPlaceableOn(): boolean {
-        return this.field.fieldType != this.placing?.fieldType;
+        return this.field.buildingType != this.placing?.buildingType;
     }
 
     isClickable(): boolean {

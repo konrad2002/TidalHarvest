@@ -17,7 +17,7 @@ export class Farmer extends Field {
 
 
     public constructor(x: number, y: number, crop: Crop) {
-        super(FieldType.FARMER, x, y);
+        super(FieldType.FARMLAND, x, y);
         this._crop = crop;
     }
 
